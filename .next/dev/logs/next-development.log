@@ -1,0 +1,11 @@
+[00:00:02.817] Server  LOG     ✓ Ready in 1938ms
+[00:00:21.126] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:22.195] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:24.260] Server  LOG     ✓ Compiled in 2.8s
+[00:04:39.742] Server  LOG     ✓ Compiled in 2.7s
+[00:09:32.698] Server  LOG     ✓ Compiled in 1517ms
+[00:09:33.592] Server  ERROR   ⨯ ReferenceError: Link is not defined
+[00:09:35.402] Browser ERROR   uncaughtError: ReferenceError: Link is not defined
+[00:14:00.195] Server  LOG     ✓ Compiled in 686ms
+[00:14:00.240] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:14:08.071] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
