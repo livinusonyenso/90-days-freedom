@@ -68,7 +68,7 @@ export default function Navbar() {
                 className={`text-sm transition-colors duration-200 ${
                   activeSection === link.href.slice(1)
                     ? "text-[#22c55e] font-semibold"
-                    : "text-[#c8d6cb] font-normal hover:text-white"
+                    : "text-white font-normal hover:text-white"
                 }`}
               >
                 {link.label}
@@ -79,7 +79,7 @@ export default function Navbar() {
             <div className="relative">
               <button
                 onClick={() => setResourcesOpen(!resourcesOpen)}
-                className="flex items-center gap-1 text-[#c8d6cb] hover:text-white text-sm font-normal transition-colors duration-200"
+                className="flex items-center gap-1 text-white hover:text-white text-sm font-normal transition-colors duration-200"
               >
                 Resources
                 <svg
@@ -99,7 +99,7 @@ export default function Navbar() {
                     <Link
                       key={r.label}
                       href={r.href}
-                      className="block px-4 py-2.5 text-sm text-[#c8d6cb] hover:text-white hover:bg-[#0a3a0e] transition-colors"
+                      className="block px-4 py-2.5 text-sm text-white hover:text-white hover:bg-[#0a3a0e] transition-colors"
                       onClick={() => setResourcesOpen(false)}
                     >
                       {r.label}
@@ -115,27 +115,26 @@ export default function Navbar() {
             {/* Register — outlined pill */}
             <Link
               href="/register"
-              className="text-sm text-white font-semibold px-4 py-1.5 rounded-full border border-[#22c55e] hover:bg-[rgba(34,197,94,0.1)] transition-colors duration-200"
+              className="text-sm text-white font-semibold px-4 py-2.5 rounded-full border border-[#22c55e] hover:bg-[rgba(34,197,94,0.1)] transition-colors duration-200"
             >
               Register
             </Link>
 
-            {/* Sign In — text only */}
-            <Link
-              href="/login"
-              className="text-sm text-[#c8d6cb] font-medium px-3 py-1.5 hover:text-white transition-colors duration-200"
-            >
-              Sign In
-            </Link>
-
-            {/* Free Trial — filled green pill */}
-            <Link
-              href="/register"
-              className="text-sm text-white font-bold px-5 py-1.5 rounded-full bg-[#22c55e] hover:bg-[#16a34a] transition-colors duration-200"
-              style={{ boxShadow: "0 0 12px rgba(34,197,94,0.35)" }}
-            >
-              Free Trial
-            </Link>
+            {/* Sign In + Free Trial — combined pill */}
+            <div className="flex items-center gap-1 rounded-full border border-[#22c55e] px-1.5 py-1" style={{ boxShadow: "0 0 12px rgba(34,197,94,0.25)" }}>
+              <Link
+                href="/login"
+                className="text-sm text-white font-medium px-3 py-0.5 hover:text-white transition-colors duration-200"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/register"
+                className="text-sm text-white font-bold px-4 py-1.5 rounded-full bg-[#22c55e] hover:bg-[#16a34a] transition-colors duration-200"
+              >
+                Free Trial
+              </Link>
+            </div>
           </div>
 
           {/* ── Mobile Hamburger ── */}
@@ -163,7 +162,7 @@ export default function Navbar() {
               key={link.label}
               href={link.href}
               className={`block text-sm py-1 ${
-                activeSection === link.href.slice(1) ? "text-[#22c55e] font-semibold" : "text-[#c8d6cb] hover:text-white"
+                activeSection === link.href.slice(1) ? "text-[#22c55e] font-semibold" : "text-white hover:text-white"
               }`}
               onClick={() => setMobileOpen(false)}
             >
@@ -172,7 +171,7 @@ export default function Navbar() {
           ))}
           <Link
             href="#"
-            className="block text-sm text-[#c8d6cb] hover:text-white py-1"
+            className="block text-sm text-white hover:text-white py-1"
             onClick={() => setMobileOpen(false)}
           >
             Resources
@@ -188,7 +187,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/login"
-              className="text-sm text-[#c8d6cb] text-center py-1 hover:text-white transition-colors"
+              className="text-sm text-white text-center py-1 hover:text-white transition-colors"
               onClick={() => setMobileOpen(false)}
             >
               Sign In

@@ -398,10 +398,6 @@ body {
   margin-top: .5rem;
 }
 
-.mt-3 {
-  margin-top: .75rem;
-}
-
 .block {
   display: block;
 }
@@ -1020,6 +1016,16 @@ body {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.px-1\.5 {
+  padding-left: .375rem;
+  padding-right: .375rem;
+}
+
+.py-0\.5 {
+  padding-top: .125rem;
+  padding-bottom: .125rem;
 }
 
 .pb-5 {
