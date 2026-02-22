@@ -1,0 +1,9 @@
+:HL["/_next/static/chunks/4a7fa8b58d8ba1ed.css","style"]
+:HL["/_next/static/media/303804218d80822e-s.p.9b40bd6c.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/4f530f52d514af96-s.p.52297690.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/6c98c9fb873995d2-s.p.4a6499bc.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/89232e6535d3b87e-s.p.1a05cc88.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/a083361d37caf3d1-s.p.5c0d0b0d.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/c6e2684784a55443-s.p.ea91da97.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/d9b5d46d9a89ffe6-s.p.0855aa53.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"buildId":"Rolx4aIIToO4jOR4-Gydc","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

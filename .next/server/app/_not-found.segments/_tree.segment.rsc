@@ -1,0 +1,2 @@
+:HL["/_next/static/chunks/4a7fa8b58d8ba1ed.css","style"]
+0:{"buildId":"Rolx4aIIToO4jOR4-Gydc","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"/_not-found","paramType":null,"paramKey":"/_not-found","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

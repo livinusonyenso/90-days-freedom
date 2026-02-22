@@ -3,6 +3,11 @@
 # dependencies
 /node_modules
 .next/dev/cache/turbopack/
+.next/dev/server/chunks/ssr/*.js
+
+.next/dev/static/chunks/*.js
+
+.next/dev/logs/next-development.log
 
 # vite
 dist

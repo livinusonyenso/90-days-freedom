@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const navLinks = [
   { label: "Features", href: "#features" },
   { label: "About", href: "#about" },
-  { label: "Pricing", href: "#pricing", active: true },
+  { label: "Pricing", href: "#pricing" },
   { label: "Blog", href: "#blog" },
   { label: "Examples", href: "#examples" },
 ];
@@ -20,6 +20,31 @@ const resourceLinks = [
 export default function Navbar() {
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  useEffect(() => {
+    const sectionIds = navLinks
+      .filter((l) => l.href.startsWith("#"))
+      .map((l) => l.href.slice(1));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-50% 0px -50% 0px", threshold: 0 }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#021a05] border-b border-[#0d2e10]">
@@ -41,7 +66,7 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 className={`text-sm transition-colors duration-200 ${
-                  link.active
+                  activeSection === link.href.slice(1)
                     ? "text-[#22c55e] font-semibold"
                     : "text-[#c8d6cb] font-normal hover:text-white"
                 }`}
@@ -138,7 +163,7 @@ export default function Navbar() {
               key={link.label}
               href={link.href}
               className={`block text-sm py-1 ${
-                link.active ? "text-[#22c55e] font-semibold" : "text-[#c8d6cb] hover:text-white"
+                activeSection === link.href.slice(1) ? "text-[#22c55e] font-semibold" : "text-[#c8d6cb] hover:text-white"
               }`}
               onClick={() => setMobileOpen(false)}
             >
