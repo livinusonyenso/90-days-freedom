@@ -10,11 +10,8 @@ export default function Hero() {
       {/* Background radial glow */}
       <div className="absolute inset-0 matrix-bg pointer-events-none" />
 
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center py-16 sm:py-24">
-        {/* Eyebrow */}
-        <p className="text-brand-green font-heading font-semibold text-sm tracking-[0.3em] uppercase mb-4">
-          The 90-Day Freedom System
-        </p>
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center py-14 sm:py-24">
+      
 
         {/* Headline */}
         <h1 className="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-6">
@@ -22,8 +19,10 @@ export default function Hero() {
         </h1>
 
         {/* Subheadline */}
-        <p className="text-brand-text-muted text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
-          Build a business that runs without you being in the middle of everything.
+        <p className="text-brand-text-muted text-xl sm:text-2xl max-w-2xl mx-auto leading-relaxed mb-10">
+          Build a business that runs without you being in the middle of{" "}
+          <br className="hidden sm:block" />
+          everything.
         </p>
 
         {/* Hero Banner Image */}

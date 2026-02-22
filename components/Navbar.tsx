@@ -65,10 +65,10 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`text-sm transition-colors duration-200 ${
+                className={`text-sm transition-all duration-200 pb-1 ${
                   activeSection === link.href.slice(1)
-                    ? "text-[#22c55e] font-semibold"
-                    : "text-white font-normal hover:text-white"
+                    ? "text-[#22c55e] font-semibold border-b-2 border-[#22c55e]"
+                    : "text-white font-normal hover:text-[#22c55e] border-b-2 border-transparent"
                 }`}
               >
                 {link.label}
