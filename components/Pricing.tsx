@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 const discordFeatures = [
   "This signifies your access to the community discord.",
@@ -24,7 +27,21 @@ function CheckIcon() {
   );
 }
 
+type Plan = "discord" | "autonomy";
+
 export default function Pricing() {
+  const [selectedPlan, setSelectedPlan] = useState<Plan>("autonomy");
+
+  const activeStyle = {
+    background: "linear-gradient(145deg, #0d3020 0%, #0a2218 50%, #071a07 100%)",
+    border: "1px solid rgba(0,230,118,0.3)",
+  };
+
+  const inactiveStyle = {
+    background: "linear-gradient(145deg, #0a1a0d 0%, #081408 100%)",
+    border: "1px solid rgba(255,255,255,0.07)",
+  };
+
   return (
     <section
       id="pricing"
@@ -62,7 +79,19 @@ export default function Pricing() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-start">
 
           {/* Card 1 — Discord Access */}
-          <div className="bg-brand-bg-card border border-brand-border rounded-2xl p-7 shadow-card-dark">
+          <div
+            className={`relative rounded-2xl p-7 cursor-pointer transition-all duration-300 ${
+              selectedPlan === "discord" ? "shadow-green-glow" : "shadow-card-dark"
+            }`}
+            style={selectedPlan === "discord" ? activeStyle : inactiveStyle}
+            onClick={() => setSelectedPlan("discord")}
+          >
+            {selectedPlan === "discord" && (
+              <div className="absolute top-5 right-5 flex items-center gap-1.5 bg-gradient-to-r from-brand-green to-brand-green-teal text-brand-bg text-xs font-heading font-bold px-3 py-1.5 rounded-full">
+                Selected
+              </div>
+            )}
+
             <h3 className="font-heading font-bold text-white text-2xl mb-2">Discord Access</h3>
             <p className="text-brand-text-muted text-sm mb-6">
               Unlock limitless potential — the future is yours to create.
@@ -87,22 +116,30 @@ export default function Pricing() {
               ))}
             </ul>
 
-            {/* CTA */}
-            <Link
-              href="/register"
-              className="block w-full text-center border border-brand-green text-brand-green font-heading font-bold text-sm tracking-widest py-3 px-6 rounded-lg hover:bg-brand-green hover:text-brand-bg transition-all duration-200"
-            >
-              Upgrade to Autonomy Layer
-            </Link>
+            {/* CTA Buttons */}
+            <div className="flex flex-col gap-3" onClick={(e) => e.stopPropagation()}>
+              <Link
+                href="/register"
+                className="block w-full text-center border border-brand-green text-brand-green font-heading font-bold text-sm tracking-widest py-3 px-6 rounded-lg hover:bg-brand-green hover:text-brand-bg transition-all duration-200"
+              >
+                Sign Up
+              </Link>
+              <Link
+                href="/register"
+                className="flex items-center justify-center gap-2 w-full bg-cta-gradient text-brand-bg font-heading font-bold text-sm tracking-wider py-3 px-6 rounded-lg hover:opacity-90 transition-opacity duration-200 shadow-green-glow"
+              >
+                One Free Trial
+              </Link>
+            </div>
           </div>
 
-          {/* Card 2 — Autonomy Layer (Featured) */}
+          {/* Card 2 — Autonomy Layer */}
           <div
-            className="relative rounded-2xl p-7 shadow-green-glow animate-pulse-green"
-            style={{
-              background: "linear-gradient(145deg, #0d3020 0%, #0a2218 50%, #071a07 100%)",
-              border: "1px solid rgba(0,230,118,0.3)",
-            }}
+            className={`relative rounded-2xl p-7 cursor-pointer transition-all duration-300 ${
+              selectedPlan === "autonomy" ? "shadow-green-glow animate-pulse-green" : "shadow-card-dark"
+            }`}
+            style={selectedPlan === "autonomy" ? activeStyle : inactiveStyle}
+            onClick={() => setSelectedPlan("autonomy")}
           >
             {/* Best Deal badge */}
             <div className="absolute top-5 right-5 flex items-center gap-1.5 bg-gradient-to-r from-brand-green to-brand-green-teal text-brand-bg text-xs font-heading font-bold px-3 py-1.5 rounded-full">
@@ -136,20 +173,27 @@ export default function Pricing() {
               ))}
             </ul>
 
-            {/* CTA */}
-            <Link
-              href="/register"
-              className="flex items-center justify-center gap-2 w-full bg-cta-gradient text-brand-bg font-heading font-bold text-base tracking-wider py-3.5 px-6 rounded-lg hover:opacity-90 transition-opacity duration-200 shadow-green-glow"
-            >
-              Join Now
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-
-            <p className="text-center text-brand-text-dim text-xs mt-3">
-              30-days money-back guarantee
-            </p>
+            {/* CTA Buttons */}
+            <div className="flex flex-col gap-3" onClick={(e) => e.stopPropagation()}>
+              <Link
+                href="/register"
+                className="block w-full text-center border border-brand-green text-brand-green font-heading font-bold text-sm tracking-widest py-3 px-6 rounded-lg hover:bg-brand-green hover:text-brand-bg transition-all duration-200"
+              >
+                Sign Up
+              </Link>
+              <Link
+                href="/register"
+                className="flex items-center justify-center gap-2 w-full bg-cta-gradient text-brand-bg font-heading font-bold text-base tracking-wider py-3.5 px-6 rounded-lg hover:opacity-90 transition-opacity duration-200 shadow-green-glow"
+              >
+                One Free Trial
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+              <p className="text-center text-brand-text-dim text-xs">
+                30-days money-back guarantee
+              </p>
+            </div>
           </div>
 
         </div>
