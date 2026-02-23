@@ -1,51 +1,47 @@
+import Image from "next/image";
+
 const categories = [
   {
     title: "Technology and Engineering",
-    description:
-      "Explore courses on coding, web development, Software Engineering, AI, data science and more.",
-    color: "#0d3b2e",
-    accentColor: "#00e676",
-    emoji: "💻",
+    description: "Explore courses on coding, web development, Software Engineering, AI, data science and more.",
+    color: "#1F837A",
+    image: "/images/course-categories1.png",
   },
   {
     title: "Design and Creative Direction",
-    description:
-      "UI/UX Design, Product Design, strategy, Graphic Design, Web3 graphic design, motion design and more.",
-    color: "#2d3b0d",
-    accentColor: "#c6e600",
-    emoji: "🎨",
+    description: "UI/UX Design, Product Design, strategy, Graphic Design, Web3 graphic design, motion design and more.",
+    color: " #67831F",
+    
+    image: "/images/course-categories2.png",
   },
   {
     title: "Marketing, Branding and Growth",
-    description:
-      "Branding, Content Strategy & Creation, Marketing strategy, SEO, and Growth Marketing.",
-    color: "#2d0d3b",
-    accentColor: "#b300e6",
-    emoji: "📈",
+    description: "Branding, Content Strategy & Creation, Marketing strategy, SEO, and Growth Marketing.",
+    color: "#591F83",
+
+    image: "/images/course-categories3.png",
   },
   {
     title: "Business, Sales, and Community",
-    description:
-      "Sales, Community Management, Product Management, Business Strategy, Foundrships and more.",
-    color: "#3b0d0d",
-    accentColor: "#e63300",
-    emoji: "💼",
+    description: "Sales, Community Management, Product Management, Business Strategy, Founderships and more.",
+    color: "#831F21",
+
+    image: "/images/course-categories4.png",
   },
   {
     title: "Writing, Education and Knowledge Products",
-    description:
-      "Technical Writing, Educational Content, Documentation, Knowledge Products.",
-    color: "#0d3b1a",
-    accentColor: "#00e65c",
-    emoji: "✍️",
+    description: "Technical Writing, Educational Content, Documentation, Knowledge Products.",
+    color: "#29831F",
+
+    image: "/images/course-categories5.png",
   },
   {
     title: "Game Development",
-    description:
-      "Game design, development, interactive media, and game monetization strategies.",
-    color: "#2e2000",
-    accentColor: "#e6a000",
-    emoji: "🎮",
+    description: "Game design, development, interactive media, and game monetization strategies.",
+    color: "#83541F",
+    
+
+    image: "/images/course-categories6.png",
   },
 ];
 
@@ -61,19 +57,26 @@ export default function CourseCategories() {
           {categories.map((cat) => (
             <div
               key={cat.title}
-              className="rounded-xl p-6 cursor-pointer hover:scale-[1.02] transition-transform duration-200 shadow-md"
+              className="rounded-2xl p-6 cursor-pointer hover:scale-[1.02] transition-transform duration-200 shadow-md flex flex-col items-center text-center"
               style={{ backgroundColor: cat.color }}
             >
-              {/* Emoji icon */}
-              <div className="text-4xl mb-4">{cat.emoji}</div>
+              {/* Circular image */}
+              <div className="w-24 h-24 rounded-full overflow-hidden mb-5 border-4 border-white/20 flex-shrink-0">
+                <Image
+                  src={cat.image}
+                  alt={cat.title}
+                  width={96}
+                  height={96}
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-              <h3
-                className="font-heading font-bold text-white text-lg leading-tight mb-2"
-                style={{ textShadow: `0 0 20px ${cat.accentColor}40` }}
-              >
+              {/* Title */}
+              <h3 className="font-heading font-bold text-white text-lg leading-tight mb-2">
                 {cat.title}
               </h3>
 
+              {/* Description */}
               <p className="text-white/70 text-sm leading-relaxed">
                 {cat.description}
               </p>
