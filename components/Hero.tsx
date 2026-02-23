@@ -5,12 +5,12 @@ export default function Hero() {
   return (
     <section
       id="features"
-      className="relative min-h-screen pt-[62px] flex flex-col items-center justify-center overflow-hidden bg-brand-bg"
+      className="relative pt-[62px] flex flex-col items-center justify-center overflow-hidden bg-brand-bg"
     >
       {/* Background radial glow */}
       <div className="absolute inset-0 matrix-bg pointer-events-none" />
 
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center py-14 sm:py-24">
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 text-center pt-14 sm:pt-20 pb-0">
       
 
         {/* Headline */}
