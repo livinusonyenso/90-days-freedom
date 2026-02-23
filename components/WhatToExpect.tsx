@@ -1,49 +1,10 @@
+import Image from "next/image";
+
 const expectItems = [
-  {
-    title: "Full Operational System Build",
-    description: "A complete operating infrastructure built inside your business from scratch.",
-    icon: (
-      <svg className="w-12 h-12" fill="none" viewBox="0 0 48 48">
-        <rect x="8" y="8" width="32" height="32" rx="4" fill="#e8f5e9" stroke="#2e7d32" strokeWidth="1.5" />
-        <path d="M16 24h16M24 16v16" stroke="#2e7d32" strokeWidth="2" strokeLinecap="round" />
-        <circle cx="24" cy="24" r="6" fill="#a5d6a7" />
-      </svg>
-    ),
-  },
-  {
-    title: "Done With Your Implementation",
-    description: "We work directly inside your business — not from the outside advising.",
-    icon: (
-      <svg className="w-12 h-12" fill="none" viewBox="0 0 48 48">
-        <circle cx="24" cy="18" r="8" fill="#e8f5e9" stroke="#2e7d32" strokeWidth="1.5" />
-        <path d="M10 38c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="#2e7d32" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M30 22l4 4-4 4" stroke="#2e7d32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Founder Visibility Without Micromanagement.",
-    description: "Full clarity on what's happening without you needing to be in every decision.",
-    icon: (
-      <svg className="w-12 h-12" fill="none" viewBox="0 0 48 48">
-        <circle cx="24" cy="24" r="14" fill="#e8f5e9" stroke="#2e7d32" strokeWidth="1.5" />
-        <path d="M10 24s4-8 14-8 14 8 14 8-4 8-14 8-14-8-14-8z" stroke="#2e7d32" strokeWidth="1.5" />
-        <circle cx="24" cy="24" r="4" fill="#2e7d32" />
-      </svg>
-    ),
-  },
-  {
-    title: "Clear Execution Frameworks.",
-    description: "Step-by-step systems your team can follow without needing you to explain everything.",
-    icon: (
-      <svg className="w-12 h-12" fill="none" viewBox="0 0 48 48">
-        <rect x="14" y="8" width="20" height="6" rx="2" fill="#ffd54f" stroke="#f57f17" strokeWidth="1" />
-        <rect x="18" y="18" width="12" height="6" rx="2" fill="#ffd54f" stroke="#f57f17" strokeWidth="1" />
-        <rect x="22" y="28" width="4" height="6" rx="2" fill="#ffd54f" stroke="#f57f17" strokeWidth="1" />
-        <path d="M24 14v4M24 24v4" stroke="#f57f17" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
-  },
+  { title: "Full Operational System Build", image: "/images/what-to-expect1.png" },
+  { title: "Done With Your Implementation", image: "/images/what-to-expect2.png" },
+  { title: "Founder Visibility Without Micromanagement.", image: "/images/what-to-expect3.png" },
+  { title: "Clear Execution Frameworks.", image: "/images/what-to-expect4.png" },
 ];
 
 export default function WhatToExpect() {
@@ -58,17 +19,24 @@ export default function WhatToExpect() {
           {expectItems.map((item) => (
             <div
               key={item.title}
-              className="bg-white rounded-xl p-6 flex items-start gap-5 shadow-card-dark hover:shadow-green-glow transition-shadow duration-300 group"
+              className="bg-white rounded-xl overflow-hidden shadow-card-dark hover:shadow-green-glow transition-shadow duration-300"
             >
-              {/* Icon */}
-              <div className="flex-shrink-0 mt-1">{item.icon}</div>
-
-              {/* Text */}
-              <div>
-                <h3 className="font-heading font-bold text-gray-900 text-lg leading-tight mb-2">
+              {/* Title */}
+              <div className="px-6 pt-5 pb-3 text-center">
+                <h3 className="font-heading font-bold text-gray-900 text-lg leading-tight">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+              </div>
+
+              {/* Image */}
+              <div className="relative w-full aspect-[4/3]">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  className="object-contain p-4"
+                />
               </div>
             </div>
           ))}
