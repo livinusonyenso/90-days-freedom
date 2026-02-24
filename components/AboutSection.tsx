@@ -42,7 +42,7 @@ export default function AboutSection() {
         </div>
 
         {/* Image */}
-        <div className="relative mx-auto max-w-5xl rounded-xl overflow-hidden border border-brand-border shadow-green-glow">
+        <div className="relative mx-auto max-w-5xl rounded-xl overflow-hidden ">
           <Image
             src="/images/contactus.png"
             alt="The 90-Day Freedom System preview"
