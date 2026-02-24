@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CornerRightDown, ArrowUpRight } from "lucide-react";
 
 const discordFeatures = [
   "This signifies your access to the community discord.",
@@ -83,7 +84,7 @@ export default function Pricing() {
           >
             90-Days Freedom System
             <br />
-            <span style={{ color: "rgba(255,255,255,0.55)", fontWeight: 600 }}>
+            <span style={{ color: "#ffffff", fontWeight: 500 }}>
               Membership options
             </span>
           </h2>
@@ -149,7 +150,7 @@ export default function Pricing() {
               className="block w-full text-center font-bold text-sm tracking-wider py-3 px-6 rounded-lg transition-opacity duration-200 hover:opacity-90"
               style={{
                 background: "linear-gradient(90deg, #00c853 0%, #00e676 50%, #1de9b6 100%)",
-                color: "#071a07",
+                color: "#ffffff",
                 fontFamily: "'Inter', sans-serif",
                 letterSpacing: "0.04em",
                 boxShadow: "0 0 20px rgba(0,230,118,0.35)",
@@ -161,34 +162,30 @@ export default function Pricing() {
 
           {/* ── Card 2: Autonomy Layer (larger/featured) ── */}
           <div
-            className="w-full md:w-[52%] flex-shrink-0 rounded-2xl p-[3px]"
+            className="w-full md:w-[52%] flex-shrink-0 rounded-2xl overflow-hidden"
             style={{
-              background: "linear-gradient(145deg, #00e676, #00c853, #074E1F)",
+              background: "linear-gradient(160deg, #00e676 0%, #00c853 40%, #074E1F 100%)",
               boxShadow: "0 0 40px rgba(0,230,118,0.25)",
             }}
           >
+            {/* Best Deal header — part of outer green wrapper */}
+            <div className="flex items-center justify-center gap-2 py-3 px-4">
+              <CornerRightDown className="w-4 h-4 text-white" />
+              <span
+                className="text-sm font-bold tracking-wide text-white"
+                style={{ fontFamily: "'Inter', sans-serif" }}
+              >
+                Best Deal
+              </span>
+            </div>
+
+          {/* Inner dark card */}
           <div
-            className="w-full rounded-2xl p-7 relative"
+            className="rounded-2xl p-7 mx-1 mb-1"
             style={{
               background: "linear-gradient(145deg, #0d3020 0%, #0a2218 50%, #071a07 100%)",
             }}
           >
-            {/* Best Deal badge */}
-            <div
-              className="absolute top-5 right-5 flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full"
-              style={{
-                background: "linear-gradient(90deg, #00c853, #1de9b6)",
-                color: "#071a07",
-                fontFamily: "'Inter', sans-serif",
-              }}
-            >
-              {/* Arrow icon like screenshot */}
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-              Best Deal
-            </div>
-
             <h3
               className="font-bold text-white text-2xl mb-1.5"
               style={{ fontFamily: "'Inter', sans-serif" }}
@@ -237,7 +234,7 @@ export default function Pricing() {
               className="flex items-center justify-center gap-2 w-full font-bold text-sm tracking-wider py-3.5 px-6 rounded-lg hover:opacity-90 transition-opacity duration-200"
               style={{
                 background: "linear-gradient(90deg, #00c853 0%, #00e676 50%, #1de9b6 100%)",
-                color: "#071a07",
+                color: "#ffffff",
                 fontFamily: "'Inter', sans-serif",
                 letterSpacing: "0.04em",
                 boxShadow: "0 0 28px rgba(0,230,118,0.4)",
@@ -245,9 +242,7 @@ export default function Pricing() {
               }}
             >
               Join Now
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <ArrowUpRight className="w-4 h-4 text-white" />
             </Link>
 
             <p

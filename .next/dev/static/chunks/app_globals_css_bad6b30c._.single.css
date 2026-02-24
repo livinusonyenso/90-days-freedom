@@ -313,16 +313,8 @@ body {
   right: 1rem;
 }
 
-.right-5 {
-  right: 1.25rem;
-}
-
 .top-0 {
   top: 0;
-}
-
-.top-5 {
-  top: 1.25rem;
 }
 
 .top-full {
@@ -335,6 +327,11 @@ body {
 
 .z-50 {
   z-index: 50;
+}
+
+.mx-1 {
+  margin-left: .25rem;
+  margin-right: .25rem;
 }
 
 .mx-auto {
@@ -681,10 +678,6 @@ body {
   gap: .25rem;
 }
 
-.gap-1\.5 {
-  gap: .375rem;
-}
-
 .gap-10 {
   gap: 2.5rem;
 }
@@ -946,10 +939,6 @@ body {
 
 .p-8 {
   padding: 2rem;
-}
-
-.p-\[3px\] {
-  padding: 3px;
 }
 
 .px-1\.5 {
