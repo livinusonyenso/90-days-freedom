@@ -9,7 +9,7 @@ const expectItems = [
 
 export default function WhatToExpect() {
   return (
-    <section className="py-16 sm:py-24 border-t border-brand-border" style={{ backgroundColor: "#074E1F" }}>
+    <section className="py-16 sm:py-24  border-brand-border" style={{ backgroundColor: "#063114" }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="font-heading font-bold text-3xl sm:text-4xl text-white text-center uppercase tracking-wider mb-12">
           WHAT TO EXPECT

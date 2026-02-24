@@ -20,13 +20,13 @@ export default function Footer() {
           style={{ bottom: "calc(62% - 2px)", lineHeight: 0 }}
         >
           <svg
-            viewBox="0 0 1440 80"
+            viewBox="0 0 1440 120"
             xmlns="http://www.w3.org/2000/svg"
             preserveAspectRatio="none"
-            style={{ display: "block", width: "100%", height: "80px" }}
+            style={{ display: "block", width: "100%", height: "120px" }}
           >
             <path
-              d="M0,0 C360,80 1080,80 1440,0 L1440,80 L0,80 Z"
+              d="M0,0 C480,120 960,120 1440,0 L1440,120 L0,120 Z"
               fill="white"
             />
           </svg>
@@ -46,7 +46,7 @@ export default function Footer() {
                 style={{
                   fontFamily: "'Georgia', 'Times New Roman', serif",
                   fontSize: "clamp(2rem, 4vw, 3rem)",
-                  maxWidth: "340px",
+                  whiteSpace: "nowrap",
                 }}
               >
                 Ready to get started?
@@ -132,12 +132,12 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+            <Link href="/" className="flex items-center flex-shrink-0">
               <div
-                className="flex items-center justify-center"
+                className="flex flex-col items-center justify-center"
                 style={{
-                  width: "34px",
-                  height: "34px",
+                  width: "46px",
+                  height: "46px",
                   borderRadius: "50%",
                   background: "linear-gradient(135deg, #00c853, #00e676)",
                   flexShrink: 0,
@@ -148,22 +148,25 @@ export default function Footer() {
                     color: "#071a09",
                     fontFamily: "'Inter', sans-serif",
                     fontWeight: 800,
-                    fontSize: "0.65rem",
-                    lineHeight: 1,
+                    fontSize: "0.85rem",
+                    lineHeight: 1.1,
                   }}
                 >
                   90
                 </span>
+                <span
+                  style={{
+                    color: "#071a09",
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "0.55rem",
+                    lineHeight: 1,
+                    letterSpacing: "0.03em",
+                  }}
+                >
+                  Days
+                </span>
               </div>
-              <span
-                style={{
-                  color: "rgba(255,255,255,0.35)",
-                  fontSize: "0.72rem",
-                  fontFamily: "'Inter', sans-serif",
-                }}
-              >
-                Days
-              </span>
             </Link>
 
             {/* Copyright */}

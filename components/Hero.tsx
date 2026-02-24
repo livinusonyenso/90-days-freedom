@@ -6,7 +6,7 @@ export default function Hero() {
     <section
       id="features"
       className="relative pt-[62px] flex flex-col items-center justify-center overflow-hidden"
-      style={{ backgroundColor: "#074E1F" }}
+      style={{ backgroundColor: "#063114" }}
     >
       {/* Background radial glow */}
       <div className="absolute inset-0 matrix-bg pointer-events-none" />

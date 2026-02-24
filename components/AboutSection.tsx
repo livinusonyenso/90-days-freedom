@@ -6,7 +6,7 @@ export default function AboutSection() {
     <section
       id="about"
       className="py-10 sm:py-20 text-center"
-      style={{ backgroundColor: "#074E1F" }}
+      style={{ backgroundColor: "#063114" }}
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
