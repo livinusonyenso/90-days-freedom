@@ -32,19 +32,12 @@ export default function FAQ() {
     <section
       className="relative py-16 sm:py-24 overflow-hidden"
       style={{
-        background: "linear-gradient(135deg, #050f05 0%, #071a07 50%, #050f05 100%)",
+        backgroundImage: "url('/images/faq-background.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Decorative wave/smoke background */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <div
-          className="absolute top-0 left-0 w-full h-full"
-          style={{
-            backgroundImage: `radial-gradient(ellipse at 20% 50%, rgba(0,230,118,0.15) 0%, transparent 50%),
-                              radial-gradient(ellipse at 80% 30%, rgba(0,191,165,0.1) 0%, transparent 50%)`,
-          }}
-        />
-      </div>
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
@@ -67,24 +60,18 @@ export default function FAQ() {
                   className="w-full flex items-center justify-between px-6 py-4 text-left"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-body font-medium text-gray-900 text-sm sm:text-base pr-4">
+                  <span className="font-body font-medium text-sm sm:text-base pr-4" style={{ color: "#074E1F" }}>
                     {faq.question}
                   </span>
-                  <span
-                    className={`flex-shrink-0 w-7 h-7 rounded-full border-2 border-gray-400 flex items-center justify-center transition-transform duration-300 ${
-                      isOpen ? "rotate-45 border-brand-green" : ""
-                    }`}
+                  <svg
+                    className={`flex-shrink-0 w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="#074E1F"
+                    strokeWidth={2.5}
                   >
-                    <svg
-                      className={`w-3.5 h-3.5 transition-colors ${isOpen ? "text-brand-green" : "text-gray-600"}`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2.5}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m-8-8h16" />
-                    </svg>
-                  </span>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m-8-8h16" />
+                  </svg>
                 </button>
 
                 {/* Answer */}
