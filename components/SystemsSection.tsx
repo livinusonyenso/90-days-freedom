@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 const chaosPoints = [
   "Design clear workflows that remove decision fatigue",
@@ -48,81 +49,103 @@ export default function SystemsSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 sm:space-y-28">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto">
+        <Reveal direction="up" className="text-center max-w-3xl mx-auto">
           <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-white uppercase tracking-wide mb-4">
             SYSTEMS + EXECUTION CREATE FREEDOM
           </h2>
           <p className="text-white text-base">
             Founders struggle when everything depends on them and nothing moves without their involvement.
           </p>
-        </div>
+        </Reveal>
 
         {/* Block 1 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <div className="w-full rounded-xl overflow-hidden border border-brand-border shadow-green-glow">
-            <Image
-              src="/images/systems-execution-create-freedom1.png"
-              alt="Founder working"
-              width={600}
-              height={450}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-          <div>
-            <p className="text-white font-heading font-semibold text-xl leading-snug mb-6">
-              We help founders build self running operations that scale without chaos:
-            </p>
-            <BulletList items={chaosPoints} />
-          </div>
+          <Reveal direction="right">
+            <div className="w-full rounded-xl overflow-hidden border border-brand-border shadow-green-glow">
+              <Image
+                src="/images/systems-execution-create-freedom1.png"
+                alt="Founder working"
+                width={600}
+                height={450}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </Reveal>
+          <RevealGroup delay={0.1}>
+            <RevealItem direction="up">
+              <p className="text-white font-heading font-semibold text-xl leading-snug mb-6">
+                We help founders build self running operations that scale without chaos:
+              </p>
+            </RevealItem>
+            <RevealItem direction="up">
+              <BulletList items={chaosPoints} />
+            </RevealItem>
+          </RevealGroup>
         </div>
 
         {/* Block 2 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <div className="w-full rounded-xl overflow-hidden border border-brand-border shadow-green-glow">
-            <Image
-              src="/images/systems-execution-create-freedom2.png"
-              alt="Operational support"
-              width={600}
-              height={450}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-          <div>
-            <h3 className="font-heading font-bold text-2xl sm:text-3xl text-white uppercase tracking-wide mb-4">
-              OPERATIONAL SUPPORT
-            </h3>
-            <p className="text-white text-sm leading-relaxed mb-5">
-              Work directly inside your business to install systems that actually run.
-              This is not advice from the outside. It is hands on implementation, clarity, and accountability.
-            </p>
-            <BulletList items={operationalPoints} />
-          </div>
+          <Reveal direction="right">
+            <div className="w-full rounded-xl overflow-hidden border border-brand-border shadow-green-glow">
+              <Image
+                src="/images/systems-execution-create-freedom2.png"
+                alt="Operational support"
+                width={600}
+                height={450}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </Reveal>
+          <RevealGroup delay={0.1}>
+            <RevealItem direction="up">
+              <h3 className="font-heading font-bold text-2xl sm:text-3xl text-white uppercase tracking-wide mb-4">
+                OPERATIONAL SUPPORT
+              </h3>
+            </RevealItem>
+            <RevealItem direction="up">
+              <p className="text-white text-sm leading-relaxed mb-5">
+                Work directly inside your business to install systems that actually run.
+                This is not advice from the outside. It is hands on implementation, clarity, and accountability.
+              </p>
+            </RevealItem>
+            <RevealItem direction="up">
+              <BulletList items={operationalPoints} />
+            </RevealItem>
+          </RevealGroup>
         </div>
 
         {/* Block 3 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <div className="w-full rounded-xl overflow-hidden border border-brand-border shadow-green-glow">
-            <Image
-              src="/images/systems-execution-create-freedom3.png"
-              alt="Day one team collaboration"
-              width={600}
-              height={450}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-          <div>
-            <h3 className="font-heading font-bold text-2xl sm:text-3xl text-white uppercase tracking-wide mb-4">
-              WHAT YOU GET FROM DAY ONE
-            </h3>
-            <p className="text-white text-sm leading-relaxed mb-5">
-              From the first day, you are guided through a clear starting point so you know exactly what to focus on,
-              what to ignore, and how to move forward with intention.
-            </p>
-            <BulletList items={dayOnePoints} />
-          </div>
+          <Reveal direction="right">
+            <div className="w-full rounded-xl overflow-hidden border border-brand-border shadow-green-glow">
+              <Image
+                src="/images/systems-execution-create-freedom3.png"
+                alt="Day one team collaboration"
+                width={600}
+                height={450}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </Reveal>
+          <RevealGroup delay={0.1}>
+            <RevealItem direction="up">
+              <h3 className="font-heading font-bold text-2xl sm:text-3xl text-white uppercase tracking-wide mb-4">
+                WHAT YOU GET FROM DAY ONE
+              </h3>
+            </RevealItem>
+            <RevealItem direction="up">
+              <p className="text-white text-sm leading-relaxed mb-5">
+                From the first day, you are guided through a clear starting point so you know exactly what to focus on,
+                what to ignore, and how to move forward with intention.
+              </p>
+            </RevealItem>
+            <RevealItem direction="up">
+              <BulletList items={dayOnePoints} />
+            </RevealItem>
+          </RevealGroup>
         </div>
 
       </div>

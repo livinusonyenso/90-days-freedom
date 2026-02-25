@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { CornerRightDown, ArrowUpRight } from "lucide-react";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 const discordFeatures = [
   "This signifies your access to the community discord.",
@@ -77,7 +78,7 @@ export default function Pricing() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section title */}
-        <div className="text-center mb-12">
+        <Reveal direction="up" className="text-center mb-12">
           <h2
             className="font-bold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight"
             style={{ fontFamily: "'Inter', sans-serif" }}
@@ -88,14 +89,15 @@ export default function Pricing() {
               Membership options
             </span>
           </h2>
-        </div>
+        </Reveal>
 
         {/* Cards — Discord is smaller, Autonomy is larger */}
-        <div className="flex flex-col md:flex-row gap-5 lg:gap-7 items-end justify-center">
+        <RevealGroup delay={0.1} className="flex flex-col md:flex-row gap-5 lg:gap-7 items-end justify-center">
 
           {/* ── Card 1: Discord Access (smaller) ── */}
+          <RevealItem direction="up" className="w-full md:w-[44%]">
           <div
-            className="w-full md:w-[44%] rounded-2xl p-6 flex-shrink-0"
+            className="w-full rounded-2xl p-6 flex-shrink-0"
             style={{
               background: "linear-gradient(145deg, #0a1a0d 0%, #081408 100%)",
               border: "1px solid rgba(0,230,118,0.5)",
@@ -159,10 +161,12 @@ export default function Pricing() {
               Upgrade to Autonomy Layer
             </Link>
           </div>
+          </RevealItem>
 
           {/* ── Card 2: Autonomy Layer (larger/featured) ── */}
+          <RevealItem direction="up" className="w-full md:w-[52%]">
           <div
-            className="w-full md:w-[52%] flex-shrink-0 rounded-2xl overflow-hidden"
+            className="w-full flex-shrink-0 rounded-2xl overflow-hidden"
             style={{
               background: "linear-gradient(160deg, #00e676 0%, #00c853 40%, #074E1F 100%)",
               boxShadow: "0 0 40px rgba(0,230,118,0.25)",
@@ -253,8 +257,9 @@ export default function Pricing() {
             </p>
           </div>
           </div>
+          </RevealItem>
 
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

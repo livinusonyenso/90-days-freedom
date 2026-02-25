@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 const faqs = [
   {
@@ -41,52 +42,55 @@ export default function FAQ() {
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
-        <h2 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-white uppercase tracking-wider text-center mb-12">
-          FIND ANSWERS TO COMMON QUESTIONS
-        </h2>
+        <Reveal direction="up">
+          <h2 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-white uppercase tracking-wider text-center mb-12">
+            FIND ANSWERS TO COMMON QUESTIONS
+          </h2>
+        </Reveal>
 
         {/* Accordion */}
-        <div className="space-y-3">
+        <RevealGroup delay={0.05} className="space-y-3">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div
-                key={faq.question}
-                className="rounded-xl overflow-hidden"
-                style={{ background: "rgba(240,248,240,0.95)" }}
-              >
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full flex items-center justify-between px-6 py-4 text-left"
-                  aria-expanded={isOpen}
-                >
-                  <span className="font-body font-medium text-sm sm:text-base pr-4" style={{ color: "#074E1F" }}>
-                    {faq.question}
-                  </span>
-                  <svg
-                    className={`flex-shrink-0 w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="#074E1F"
-                    strokeWidth={2.5}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m-8-8h16" />
-                  </svg>
-                </button>
-
-                {/* Answer */}
+              <RevealItem key={faq.question} direction="up">
                 <div
-                  className="accordion-content"
-                  style={{ maxHeight: isOpen ? "300px" : "0" }}
+                  className="rounded-xl overflow-hidden"
+                  style={{ background: "rgba(240,248,240,0.95)" }}
                 >
-                  <p className="px-6 pb-5 text-gray-700 text-sm leading-relaxed">
-                    {faq.answer}
-                  </p>
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className="w-full flex items-center justify-between px-6 py-4 text-left"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="font-body font-medium text-sm sm:text-base pr-4" style={{ color: "#074E1F" }}>
+                      {faq.question}
+                    </span>
+                    <svg
+                      className={`flex-shrink-0 w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="#074E1F"
+                      strokeWidth={2.5}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m-8-8h16" />
+                    </svg>
+                  </button>
+
+                  {/* Answer */}
+                  <div
+                    className="accordion-content"
+                    style={{ maxHeight: isOpen ? "300px" : "0" }}
+                  >
+                    <p className="px-6 pb-5 text-gray-700 text-sm leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </RevealItem>
             );
           })}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

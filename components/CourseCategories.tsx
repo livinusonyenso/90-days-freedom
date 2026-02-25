@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 const categories = [
   {
@@ -49,14 +50,16 @@ export default function CourseCategories() {
   return (
     <section className="bg-white py-16 sm:py-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-heading font-bold text-3xl sm:text-4xl text-gray-900 text-center mb-12">
-          Categories of Courses
-        </h2>
+        <Reveal direction="up">
+          <h2 className="font-heading font-bold text-3xl sm:text-4xl text-gray-900 text-center mb-12">
+            Categories of Courses
+          </h2>
+        </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <RevealGroup delay={0.05} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {categories.map((cat) => (
+            <RevealItem key={cat.title} direction="up">
             <div
-              key={cat.title}
               className="rounded-2xl p-6 cursor-pointer hover:scale-[1.02] transition-transform duration-200 shadow-md flex flex-col items-center text-center"
               style={{ backgroundColor: cat.color }}
             >
@@ -81,8 +84,9 @@ export default function CourseCategories() {
                 {cat.description}
               </p>
             </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );
