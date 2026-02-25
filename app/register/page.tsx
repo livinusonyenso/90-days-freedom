@@ -24,33 +24,51 @@ export default function RegisterPage() {
     <div
       className="min-h-screen flex flex-col items-center justify-center px-4 py-16"
       style={{
-        background: "radial-gradient(ellipse at 50% 40%, #0d3d0d 0%, #050f05 70%)",
+        background: "radial-gradient(ellipse at 50% 35%, #0d4a14 0%, #071a09 45%, #020804 100%)",
       }}
     >
-      {/* Logo */}
-      <Link href="/" className="flex items-center gap-2 mb-10">
-        <div className="w-8 h-8 rounded-full bg-brand-green flex items-center justify-center">
-          <span className="text-brand-bg font-heading font-bold text-xs">90</span>
-        </div>
-      </Link>
-
       {/* Title */}
-      <h1 className="font-heading font-bold text-white text-2xl sm:text-3xl tracking-widest uppercase text-center mb-1">
+      <h1
+        className="font-bold text-white text-center uppercase mb-5"
+        style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "clamp(1.3rem, 3.5vw, 2rem)",
+          letterSpacing: "0.18em",
+          fontWeight: 800,
+        }}
+      >
         THE 90-DAY FREEDOM SYSTEM
       </h1>
 
       {/* Subtitle */}
-      <p className="text-brand-green font-heading font-semibold text-xl mb-8 text-center">
+      <p
+        className="text-center font-bold mb-7"
+        style={{
+          color: "#00e676",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "1.45rem",
+          letterSpacing: "0.01em",
+        }}
+      >
         Create Account
       </p>
 
       {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-xs space-y-4"
+        className="w-full flex flex-col gap-4"
+        style={{ maxWidth: "260px" }}
       >
-        <div>
-          <label className="block text-brand-text-muted text-xs mb-1 font-body">
+        {/* First name */}
+        <div className="flex flex-col gap-1">
+          <label
+            style={{
+              color: "rgba(255,255,255,0.85)",
+              fontSize: "0.75rem",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 500,
+            }}
+          >
             First name
           </label>
           <input
@@ -59,12 +77,30 @@ export default function RegisterPage() {
             value={formData.firstName}
             onChange={handleChange}
             required
-            className="w-full bg-transparent border border-brand-border rounded px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-green transition-colors placeholder-brand-text-dim"
+            style={{
+              background: "rgba(255,255,255,0.92)",
+              border: "none",
+              borderRadius: "6px",
+              padding: "0.6rem 0.75rem",
+              fontSize: "0.82rem",
+              color: "#111",
+              outline: "none",
+              fontFamily: "'Inter', sans-serif",
+              width: "100%",
+            }}
           />
         </div>
 
-        <div>
-          <label className="block text-brand-text-muted text-xs mb-1 font-body">
+        {/* Last name */}
+        <div className="flex flex-col gap-1">
+          <label
+            style={{
+              color: "rgba(255,255,255,0.85)",
+              fontSize: "0.75rem",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 500,
+            }}
+          >
             Last name
           </label>
           <input
@@ -73,12 +109,30 @@ export default function RegisterPage() {
             value={formData.lastName}
             onChange={handleChange}
             required
-            className="w-full bg-transparent border border-brand-border rounded px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-green transition-colors"
+            style={{
+              background: "rgba(255,255,255,0.92)",
+              border: "none",
+              borderRadius: "6px",
+              padding: "0.6rem 0.75rem",
+              fontSize: "0.82rem",
+              color: "#111",
+              outline: "none",
+              fontFamily: "'Inter', sans-serif",
+              width: "100%",
+            }}
           />
         </div>
 
-        <div>
-          <label className="block text-brand-text-muted text-xs mb-1 font-body">
+        {/* Email */}
+        <div className="flex flex-col gap-1">
+          <label
+            style={{
+              color: "rgba(255,255,255,0.85)",
+              fontSize: "0.75rem",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 500,
+            }}
+          >
             Email
           </label>
           <input
@@ -87,12 +141,30 @@ export default function RegisterPage() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full bg-transparent border border-brand-border rounded px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-green transition-colors"
+            style={{
+              background: "rgba(255,255,255,0.92)",
+              border: "none",
+              borderRadius: "6px",
+              padding: "0.6rem 0.75rem",
+              fontSize: "0.82rem",
+              color: "#111",
+              outline: "none",
+              fontFamily: "'Inter', sans-serif",
+              width: "100%",
+            }}
           />
         </div>
 
-        <div>
-          <label className="block text-brand-text-muted text-xs mb-1 font-body">
+        {/* Password */}
+        <div className="flex flex-col gap-1">
+          <label
+            style={{
+              color: "rgba(255,255,255,0.85)",
+              fontSize: "0.75rem",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 500,
+            }}
+          >
             Password
           </label>
           <input
@@ -101,24 +173,57 @@ export default function RegisterPage() {
             value={formData.password}
             onChange={handleChange}
             required
-            className="w-full bg-transparent border border-brand-border rounded px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-green transition-colors"
+            style={{
+              background: "rgba(255,255,255,0.92)",
+              border: "none",
+              borderRadius: "6px",
+              padding: "0.6rem 0.75rem",
+              fontSize: "0.82rem",
+              color: "#111",
+              outline: "none",
+              fontFamily: "'Inter', sans-serif",
+              width: "100%",
+            }}
           />
         </div>
 
+        {/* Sign Up button */}
         <button
           type="submit"
-          className="w-full bg-brand-bg-card border border-brand-border-bright text-white font-heading font-bold text-sm tracking-wider py-3 rounded-full hover:bg-brand-bg-light hover:border-brand-green transition-all duration-200 mt-2"
+          className="w-full font-bold text-white transition-opacity duration-200 hover:opacity-90 mt-1"
+          style={{
+            background: "linear-gradient(135deg, #0d4a14 0%, #0a3410 100%)",
+            border: "1px solid rgba(0,230,118,0.3)",
+            borderRadius: "999px",
+            padding: "0.7rem 0",
+            fontSize: "0.88rem",
+            fontFamily: "'Inter', sans-serif",
+            letterSpacing: "0.04em",
+            cursor: "pointer",
+            boxShadow: "0 0 18px rgba(0,200,83,0.25)",
+          }}
         >
           Sign Up
         </button>
 
-        <p className="text-center text-brand-text-dim text-xs pt-1">
+        {/* Log in link */}
+        <p
+          className="text-center"
+          style={{
+            fontSize: "0.72rem",
+            fontFamily: "'Inter', sans-serif",
+            color: "rgba(255,255,255,0.4)",
+            paddingTop: "2px",
+          }}
+        >
           Have an Account?{" "}
           <Link
             href="/login"
-            className="text-brand-green hover:underline"
+            style={{ color: "#00c853", textDecoration: "none" }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.textDecoration = "underline")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.textDecoration = "none")}
           >
-            Log In
+            Log in
           </Link>
         </p>
       </form>

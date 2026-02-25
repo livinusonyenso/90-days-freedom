@@ -27,30 +27,51 @@ export default function LoginPage() {
     <div
       className="min-h-screen flex flex-col items-center justify-center px-4 py-16"
       style={{
-        background: "radial-gradient(ellipse at 50% 40%, #0d3d0d 0%, #050f05 70%)",
+        background: "radial-gradient(ellipse at 75% 50%, #0d4a14 0%, #071a09 45%, #020804 100%)",
       }}
     >
-      {/* Logo */}
-      <Link href="/" className="flex items-center gap-2 mb-10">
-        <div className="w-8 h-8 rounded-full bg-brand-green flex items-center justify-center">
-          <span className="text-brand-bg font-heading font-bold text-xs">90</span>
-        </div>
-      </Link>
-
       {/* Title */}
-      <h1 className="font-heading font-bold text-white text-2xl sm:text-3xl tracking-widest uppercase text-center mb-1">
+      <h1
+        className="font-bold text-white text-center uppercase mb-5"
+        style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "clamp(1.3rem, 3.5vw, 2rem)",
+          letterSpacing: "0.18em",
+          fontWeight: 800,
+        }}
+      >
         THE 90-DAY FREEDOM SYSTEM
       </h1>
 
       {/* Subtitle */}
-      <p className="text-brand-green font-heading font-semibold text-xl mb-8 text-center">
+      <p
+        className="text-center font-bold mb-7"
+        style={{
+          color: "#00e676",
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "1.45rem",
+          letterSpacing: "0.01em",
+        }}
+      >
         Log In
       </p>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="w-full max-w-xs space-y-4">
-        <div>
-          <label className="block text-brand-text-muted text-xs mb-1 font-body">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full flex flex-col gap-4"
+        style={{ maxWidth: "260px" }}
+      >
+        {/* Email */}
+        <div className="flex flex-col gap-1">
+          <label
+            style={{
+              color: "rgba(255,255,255,0.85)",
+              fontSize: "0.75rem",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 500,
+            }}
+          >
             Email
           </label>
           <input
@@ -59,12 +80,30 @@ export default function LoginPage() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full bg-transparent border border-brand-border rounded px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-green transition-colors"
+            style={{
+              background: "rgba(255,255,255,0.92)",
+              border: "none",
+              borderRadius: "6px",
+              padding: "0.6rem 0.75rem",
+              fontSize: "0.82rem",
+              color: "#111",
+              outline: "none",
+              fontFamily: "'Inter', sans-serif",
+              width: "100%",
+            }}
           />
         </div>
 
-        <div>
-          <label className="block text-brand-text-muted text-xs mb-1 font-body">
+        {/* Password */}
+        <div className="flex flex-col gap-1">
+          <label
+            style={{
+              color: "rgba(255,255,255,0.85)",
+              fontSize: "0.75rem",
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 500,
+            }}
+          >
             Password
           </label>
           <input
@@ -73,42 +112,76 @@ export default function LoginPage() {
             value={formData.password}
             onChange={handleChange}
             required
-            className="w-full bg-transparent border border-brand-border rounded px-3 py-2.5 text-white text-sm focus:outline-none focus:border-brand-green transition-colors"
+            style={{
+              background: "rgba(255,255,255,0.92)",
+              border: "none",
+              borderRadius: "6px",
+              padding: "0.6rem 0.75rem",
+              fontSize: "0.82rem",
+              color: "#111",
+              outline: "none",
+              fontFamily: "'Inter', sans-serif",
+              width: "100%",
+            }}
           />
         </div>
 
-        {/* Remember me */}
-        <label className="flex items-center gap-2 cursor-pointer">
+        {/* Remember Me */}
+        <label
+          className="flex items-center gap-2 cursor-pointer"
+          style={{ marginTop: "-4px" }}
+        >
           <input
             type="checkbox"
             name="rememberMe"
             checked={formData.rememberMe}
             onChange={handleChange}
-            className="w-3.5 h-3.5 accent-green-600"
+            style={{ accentColor: "#00c853", width: "13px", height: "13px", cursor: "pointer" }}
           />
-          <span className="text-brand-text-muted text-xs">Remember Me</span>
+          <span
+            style={{
+              color: "rgba(255,255,255,0.75)",
+              fontSize: "0.72rem",
+              fontFamily: "'Inter', sans-serif",
+            }}
+          >
+            Remember Me
+          </span>
         </label>
 
+        {/* Log In button */}
         <button
           type="submit"
-          className="w-full bg-brand-bg-card border border-brand-border-bright text-white font-heading font-bold text-sm tracking-wider py-3 rounded-full hover:bg-brand-bg-light hover:border-brand-green transition-all duration-200 mt-2"
+          className="w-full font-bold text-white transition-opacity duration-200 hover:opacity-90 mt-1"
+          style={{
+            background: "linear-gradient(135deg, #0d4a14 0%, #0a3410 100%)",
+            border: "1px solid rgba(0,230,118,0.3)",
+            borderRadius: "999px",
+            padding: "0.7rem 0",
+            fontSize: "0.88rem",
+            fontFamily: "'Inter', sans-serif",
+            letterSpacing: "0.04em",
+            cursor: "pointer",
+            boxShadow: "0 0 18px rgba(0,200,83,0.25)",
+          }}
         >
           Log In
         </button>
 
-        <p className="text-center pt-1">
+        {/* Forgot Password */}
+        <p className="text-center" style={{ paddingTop: "2px" }}>
           <Link
             href="/forgot-password"
-            className="text-brand-green text-xs hover:underline"
+            style={{
+              color: "#00c853",
+              fontSize: "0.72rem",
+              fontFamily: "'Inter', sans-serif",
+              textDecoration: "none",
+            }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.textDecoration = "underline")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.textDecoration = "none")}
           >
             Forgot Password
-          </Link>
-        </p>
-
-        <p className="text-center text-brand-text-dim text-xs">
-          Don&apos;t have an account?{" "}
-          <Link href="/register" className="text-brand-green hover:underline">
-            Sign Up
           </Link>
         </p>
       </form>
