@@ -12,7 +12,13 @@ export interface Course {
   slug: string;
 }
 
-export const categories = [
+export interface Category {
+  id: string;
+  label: string;
+  icon: string;
+}
+
+export const categories: Category[] = [
   { id: "all", label: "All Courses", icon: "✓" },
   { id: "ui-ux", label: "UI/UX Design", icon: "layers" },
   { id: "game-dev", label: "Game Development", icon: "gamepad" },
@@ -33,7 +39,7 @@ export const courses: Course[] = [
     lessons: 65,
     level: "All Levels",
     rating: 5,
-    image: "/courses/uiux.jpg",
+    image: "/images/courses1.png",
     slug: "complete-uiux-design-mastery",
   },
   {
@@ -44,7 +50,7 @@ export const courses: Course[] = [
     lessons: 65,
     level: "All Levels",
     rating: 4,
-    image: "/courses/gamedev.jpg",
+    image:  "/images/courses2.png",
     slug: "unity-game-development-bootcamp",
   },
   {
@@ -55,7 +61,7 @@ export const courses: Course[] = [
     lessons: 65,
     level: "All Levels",
     rating: 5,
-    image: "/courses/business.jpg",
+    image:  "/images/courses3.png",
     slug: "building-profitable-business-model",
   },
   {
@@ -66,7 +72,7 @@ export const courses: Course[] = [
     lessons: 65,
     level: "All Levels",
     rating: 4,
-    image: "/courses/marketing.jpg",
+    image:  "/images/courses4.png",
     slug: "advanced-facebook-advertising",
   },
   {
@@ -77,7 +83,7 @@ export const courses: Course[] = [
     lessons: 65,
     level: "All Levels",
     rating: 5,
-    image: "/courses/sales.jpg",
+    image:  "/images/courses5.png",
     slug: "sales-funnel-mastery",
   },
   {
@@ -88,7 +94,7 @@ export const courses: Course[] = [
     lessons: 65,
     level: "All Levels",
     rating: 4,
-    image: "/courses/branding.jpg",
+    image:  "/images/courses6.png",
     slug: "brand-identity-content-strategy",
   },
   {
@@ -99,7 +105,7 @@ export const courses: Course[] = [
     lessons: 65,
     level: "All Levels",
     rating: 5,
-    image: "/courses/sales2.jpg",
+    image:  "/images/courses1.png",
     slug: "sales-funnel-mastery-2",
   },
   {
@@ -110,7 +116,7 @@ export const courses: Course[] = [
     lessons: 65,
     level: "All Levels",
     rating: 4,
-    image: "/courses/branding2.jpg",
+    image:  "/images/courses1.png",
     slug: "brand-identity-content-strategy-2",
   },
 ];

@@ -34,7 +34,7 @@ export default function CoursesPage() {
   }, [activeCategory, searchQuery, selectedLevel, sortBy]);
 
   const visible = filtered.slice(0, visibleCount);
-  const hasMore = visibleCount < filtered.length;
+  const hasMore = visibleCount > filtered.length;
 
   const clearFilters = () => {
     setSearchQuery("");
@@ -266,8 +266,7 @@ export default function CoursesPage() {
             </div>
           ) : (
             <div
-              className="grid gap-5"
-              style={{ gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))" }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-5"
             >
               {visible.map((course) => (
                 <CourseCard key={course.id} course={course} />
@@ -276,29 +275,34 @@ export default function CoursesPage() {
           )}
 
           {/* View more */}
-          {hasMore && (
-            <div className="flex justify-center mt-10">
+          <div className="flex justify-center mt-10">
               <button
                 onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
                 style={{
                   background: "white",
-                  border: "1px solid #d1d5db",
-                  borderRadius: "999px",
-                  padding: "0.6rem 2rem",
+                  border: "1.5px dashed #d1d5db",
+                  borderRadius: "8px",
+                  padding: "0.65rem 2.5rem",
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.85rem",
-                  color: "#374151",
+                  color: "#6b7280",
                   cursor: "pointer",
-                  fontWeight: 500,
-                  transition: "background 0.15s",
+                  fontWeight: 400,
+                  letterSpacing: "0.01em",
+                  transition: "border-color 0.15s, color 0.15s",
                 }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "#f9fafb")}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "white")}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.borderColor = "#9ca3af";
+                  (e.currentTarget as HTMLButtonElement).style.color = "#374151";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.borderColor = "#d1d5db";
+                  (e.currentTarget as HTMLButtonElement).style.color = "#6b7280";
+                }}
               >
                 View more courses...
               </button>
             </div>
-          )}
         </div>
       </div>
     </div>

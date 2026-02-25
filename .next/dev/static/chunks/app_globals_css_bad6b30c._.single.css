@@ -672,6 +672,10 @@ body {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -837,6 +841,10 @@ body {
   border-width: 4px;
 }
 
+.border-2 {
+  border-width: 2px;
+}
+
 .border-b {
   border-bottom-width: 1px;
 }
@@ -875,6 +883,11 @@ body {
 
 .border-white\/20 {
   border-color: #fff3;
+}
+
+.border-gray-900 {
+  --tw-border-opacity: 1;
+  border-color: rgb(17 24 39 / var(--tw-border-opacity, 1));
 }
 
 .bg-\[\#021a05\] {
@@ -1414,6 +1427,11 @@ body {
 .hover\:bg-brand-bg-light:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(15 45 15 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-gray-900:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
 }
 
 .hover\:text-\[\#22c55e\]:hover {

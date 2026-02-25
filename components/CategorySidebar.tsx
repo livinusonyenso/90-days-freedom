@@ -1,6 +1,6 @@
 "use client";
 
-import { categories } from "../data/courses";
+import { categories } from "@/data/courses";
 
 // SVG icons for each category
 function CategoryIcon({ icon }: { icon: string }) {
@@ -82,15 +82,17 @@ export default function CategorySidebar({ activeCategory, onSelect }: Props) {
                 className="w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-150"
                 style={{
                   background: isActive ? "#f0fdf4" : "transparent",
+                  borderTop: "none",
+                  borderRight: "none",
+                  borderBottom: "none",
                   borderLeft: isActive ? "3px solid #14532d" : "3px solid transparent",
                   color: isActive ? "#14532d" : "#374151",
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.85rem",
                   fontWeight: isActive ? 600 : 400,
                   cursor: "pointer",
-                  border: "none",
                   outline: "none",
-                  paddingLeft: isActive ? "calc(0.75rem - 0px)" : "0.75rem",
+                  paddingLeft: "0.75rem",
                 }}
               >
                 {cat.id === "all" ? (
