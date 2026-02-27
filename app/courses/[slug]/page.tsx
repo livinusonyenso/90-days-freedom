@@ -259,7 +259,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
               <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#9ca3af" strokeWidth={2}>
                 <circle cx="11" cy="11" r="8"/><path strokeLinecap="round" d="M21 21l-4.35-4.35"/>
               </svg>
-              <input placeholder="Search for courses..." style={{ border: "none", outline: "none", background: "transparent", fontFamily: "'Inter',sans-serif", fontSize: "0.8rem", color: "#374151", width: "100%" }} />
+              <input suppressHydrationWarning placeholder="Search for courses..." style={{ border: "none", outline: "none", background: "transparent", fontFamily: "'Inter',sans-serif", fontSize: "0.8rem", color: "#374151", width: "100%" }} />
             </div>
             {["All Levels", "Sort by: Most Popular"].map((label, i) => (
               <button key={i} style={{ display: "flex", alignItems: "center", gap: "5px", border: "1px solid #e5e7eb", borderRadius: "8px", padding: "0.4rem 0.85rem", fontFamily: "'Inter',sans-serif", fontSize: "0.8rem", color: "#374151", background: "white", cursor: "pointer" }}>
@@ -272,7 +272,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
           </div>
 
           {/* Video thumbnail */}
-          <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden", background: "#1f2937", marginBottom: "1rem" }}>
+          <a href="https://codewalker.gumroad.com/" target="_blank" rel="noopener noreferrer" style={{ display: "block", position: "relative", borderRadius: "12px", overflow: "hidden", background: "#1f2937", marginBottom: "1rem", textDecoration: "none" }}>
             <div style={{ paddingTop: "52%", position: "relative" }}>
               <img
                 src={course.image}
@@ -284,14 +284,14 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
               <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.28)" }} />
               {/* Play button */}
               <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <button style={{ width: "60px", height: "60px", borderRadius: "50%", background: "rgba(255,255,255,0.92)", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 20px rgba(0,0,0,0.3)" }}>
+                <div style={{ width: "60px", height: "60px", borderRadius: "50%", background: "rgba(255,255,255,0.92)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 20px rgba(0,0,0,0.3)" }}>
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="#14532d" style={{ marginLeft: "3px" }}>
                     <path d="M8 5v14l11-7z"/>
                   </svg>
-                </button>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
 
           {/* Action buttons */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "1.5rem" }}>
