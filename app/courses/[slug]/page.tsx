@@ -295,9 +295,9 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
 
           {/* Action buttons */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "1.5rem" }}>
-            <button style={{ background: "#14532d", color: "white", border: "none", borderRadius: "8px", padding: "0.75rem 0", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.9rem", cursor: "pointer", transition: "opacity 0.15s" }}>
+            <a href="https://codewalker.gumroad.com/" target="_blank" rel="noopener noreferrer" style={{ background: "#14532d", color: "white", border: "none", borderRadius: "8px", padding: "0.75rem 0", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.9rem", cursor: "pointer", transition: "opacity 0.15s", textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center" }}>
               Enroll Now
-            </button>
+            </a>
             <button style={{ background: "white", color: "#374151", border: "1.5px solid #d1d5db", borderRadius: "8px", padding: "0.75rem 0", fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: "0.9rem", cursor: "pointer" }}>
               Watch Preview
             </button>
@@ -362,9 +362,9 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
                       </div>
                     ))}
                   </div>
-                  <button style={{ width: "100%", background: "#14532d", color: "white", border: "none", borderRadius: "8px", padding: "0.6rem 0", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.82rem", cursor: "pointer" }}>
+                  <a href="https://codewalker.gumroad.com/" target="_blank" rel="noopener noreferrer" style={{ width: "100%", background: "#14532d", color: "white", border: "none", borderRadius: "8px", padding: "0.6rem 0", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.82rem", cursor: "pointer", textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     Enroll Now
-                  </button>
+                  </a>
                 </div>
               </div>
 
@@ -545,9 +545,9 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
 
             {/* Enroll CTA */}
             <div style={{ padding: "1rem 1.25rem" }}>
-              <button style={{ width: "100%", background: "#14532d", color: "white", border: "none", borderRadius: "8px", padding: "0.8rem 0", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.9rem", cursor: "pointer", marginBottom: "0.6rem" }}>
+              <a href="https://codewalker.gumroad.com/" target="_blank" rel="noopener noreferrer" style={{ width: "100%", background: "#14532d", color: "white", border: "none", borderRadius: "8px", padding: "0.8rem 0", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.9rem", cursor: "pointer", marginBottom: "0.6rem", textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 Enroll Now
-              </button>
+              </a>
               <p style={{ textAlign: "center", margin: 0, fontSize: "0.72rem", color: "#9ca3af" }}>
                 30-Day Money-Back Guarantee
               </p>
