@@ -12,10 +12,27 @@ const adminRoutes = require("./routes/adminRoutes");
 const app = express();
 
 // ─── Global Middleware ────────────────────────────────────────────────────────
-app.use(cors({
-  origin: process.env.CLIENT_ORIGIN || "http://localhost:3000",
-  credentials: true,
-}));
+const allowedOrigins = (process.env.CLIENT_ORIGIN || "http://localhost:4000")
+  .split(",")
+  .map((o) => o.trim());
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, curl, Postman)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      callback(new Error(`CORS: origin ${origin} not allowed`));
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+// Handle preflight for all routes
+app.options("*", cors());
+
 app.use(express.json());
 
 // ─── Routes ──────────────────────────────────────────────────────────────────
