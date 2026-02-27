@@ -2,69 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import CoursesNavbar from "@/components/CoursesNavbar";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
-// ─── Navbar ───────────────────────────────────────────────────────────────────
-function Navbar() {
-  return (
-    <nav style={{ borderBottom: "1px solid #e5e7eb", background: "white" }}>
-      <div
-        className="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between"
-        style={{ height: "60px" }}
-      >
-        <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-2">
-            <div
-              style={{
-                width: "36px", height: "36px", borderRadius: "50%",
-                background: "linear-gradient(135deg,#14532d,#166534)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                flexShrink: 0,
-              }}
-            >
-              <span style={{ color: "white", fontFamily: "'Inter',sans-serif", fontWeight: 800, fontSize: "0.6rem", lineHeight: 1.2, textAlign: "center" }}>
-                90<br /><span style={{ fontWeight: 600, fontSize: "0.48rem" }}>Days</span>
-              </span>
-            </div>
-            <span style={{ color: "#374151", fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: "0.9rem" }}>
-              Courses
-            </span>
-          </Link>
-          <div className="hidden md:flex items-center gap-7">
-            {[
-              { label: "Hire Talent", href: "/hire-talent", active: true },
-              { label: "About", href: "/about", active: false },
-              { label: "Blog", href: "/blog", active: false },
-            ].map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                style={{
-                  color: item.active ? "#14532d" : "#374151",
-                  fontFamily: "'Inter',sans-serif",
-                  fontWeight: item.active ? 600 : 500,
-                  fontSize: "0.88rem",
-                  textDecoration: "none",
-                }}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-        <Link
-          href="/register"
-          style={{
-            background: "#14532d", color: "white", borderRadius: "8px",
-            padding: "0.5rem 1.3rem", fontFamily: "'Inter',sans-serif",
-            fontWeight: 700, fontSize: "0.85rem", textDecoration: "none",
-          }}
-        >
-          Get Started
-        </Link>
-      </div>
-    </nav>
-  );
-}
+
 
 // ─── Star Rating ──────────────────────────────────────────────────────────────
 function Stars({ rating, max = 5 }: { rating: number; max?: number }) {
@@ -247,9 +188,11 @@ export default function HireTalentPage() {
   const [activeTab, setActiveTab] = useState("All Categories");
 
   return (
+    <ProtectedRoute>
     <div style={{ background: "white", minHeight: "100vh", fontFamily: "'Inter',sans-serif" }}>
-      <Navbar />
+    
 
+<CoursesNavbar/>
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
       <section style={{ borderBottom: "1px solid #e5e7eb" }}>
         <div
@@ -618,5 +561,6 @@ export default function HireTalentPage() {
         </p>
       </footer>
     </div>
+    </ProtectedRoute>
   );
 }

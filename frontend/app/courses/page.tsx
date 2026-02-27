@@ -5,6 +5,7 @@ import CategorySidebar from "@/components/CategorySidebar";
 import CourseCard from "@/components/CourseCard";
 import { courses, CourseLevel } from "@/data/courses";
 import CoursesNavbar from "@/components/CoursesNavbar";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const LEVELS: CourseLevel[] = ["All Levels", "Beginner", "Intermediate", "Advanced"];
 const PAGE_SIZE = 8;
@@ -44,6 +45,7 @@ export default function CoursesPage() {
   };
 
   return (
+    <ProtectedRoute>
     <div style={{ background: "#ffffff", minHeight: "100vh" }}>
       <CoursesNavbar />
 
@@ -306,5 +308,6 @@ export default function CoursesPage() {
         </div>
       </div>
     </div>
+    </ProtectedRoute>
   );
 }

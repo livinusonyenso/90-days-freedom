@@ -45,10 +45,9 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "60px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
-            <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "linear-gradient(135deg,#14532d,#166534)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-              <span style={{ color: "white", fontFamily: "'Inter',sans-serif", fontWeight: 800, fontSize: "0.58rem", lineHeight: 1.2, textAlign: "center" }}>
-                90<br /><span style={{ fontWeight: 600, fontSize: "0.46rem" }}>Days</span>
-              </span>
+            <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "linear-gradient(135deg,#14532d,#166534)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <span style={{ color: "white", fontFamily: "'Inter',sans-serif", fontWeight: 800, fontSize: "0.58rem", lineHeight: 1 }}>90</span>
+              <span style={{ color: "white", fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: "0.4rem", lineHeight: 1, marginTop: "1px" }}>Days</span>
             </div>
             <span style={{ color: "#14532d", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.95rem" }}>Courses</span>
           </Link>
