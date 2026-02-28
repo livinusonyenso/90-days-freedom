@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { CornerRightDown, ArrowUpRight } from "lucide-react";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
@@ -147,8 +146,10 @@ export default function Pricing() {
             </ul>
 
             {/* CTA */}
-            <Link
-              href="/register"
+            <a
+              href="https://codewalker.gumroad.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="block w-full text-center font-bold text-sm tracking-wider py-3 px-6 rounded-lg transition-opacity duration-200 hover:opacity-90"
               style={{
                 background: "linear-gradient(90deg, #00c853 0%, #00e676 50%, #1de9b6 100%)",
@@ -156,10 +157,11 @@ export default function Pricing() {
                 fontFamily: "'Inter', sans-serif",
                 letterSpacing: "0.04em",
                 boxShadow: "0 0 20px rgba(0,230,118,0.35)",
+                textDecoration: "none",
               }}
             >
               Upgrade to Autonomy Layer
-            </Link>
+            </a>
           </div>
           </RevealItem>
 
@@ -233,8 +235,10 @@ export default function Pricing() {
             </ul>
 
             {/* CTA */}
-            <Link
-              href="/register"
+            <a
+              href="https://codewalker.gumroad.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 w-full font-bold text-sm tracking-wider py-3.5 px-6 rounded-lg hover:opacity-90 transition-opacity duration-200"
               style={{
                 background: "linear-gradient(90deg, #00c853 0%, #00e676 50%, #1de9b6 100%)",
@@ -243,11 +247,12 @@ export default function Pricing() {
                 letterSpacing: "0.04em",
                 boxShadow: "0 0 28px rgba(0,230,118,0.4)",
                 fontSize: "0.95rem",
+                textDecoration: "none",
               }}
             >
               Join Now
               <ArrowUpRight className="w-4 h-4 text-white" />
-            </Link>
+            </a>
 
             <p
               className="text-center mt-3"
