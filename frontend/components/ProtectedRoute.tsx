@@ -24,12 +24,12 @@ export default function ProtectedRoute({
     if (isLoading) return;
 
     if (!isAuthenticated) {
-      router.replace(redirectTo);
+      router.replace(adminOnly ? "/admin/login" : redirectTo);
       return;
     }
 
     if (adminOnly && user?.role !== "admin") {
-      router.replace("/");
+      router.replace("/admin/login");
     }
   }, [isLoading, isAuthenticated, adminOnly, user, router, redirectTo]);
 

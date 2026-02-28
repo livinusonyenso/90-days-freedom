@@ -4,6 +4,7 @@ import { useState, use } from "react";
 import Link from "next/link";
 import { courses, categories, categoryLabels, type Module } from "@/data/courses";
 import { notFound } from "next/navigation";
+import CoursesNavbar from "@/components/CoursesNavbar";
 
 // ─── Shared helpers ────────────────────────────────────────────────────────────
 
@@ -38,38 +39,7 @@ function GreenCheck({ size = 18 }: { size?: number }) {
   );
 }
 
-// ─── Navbar ────────────────────────────────────────────────────────────────────
-function Navbar() {
-  return (
-    <nav style={{ borderBottom: "1px solid #e5e7eb", background: "white", position: "sticky", top: 0, zIndex: 50 }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "60px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
-            <div style={{ width: "36px", height: "36px", borderRadius: "50%", background: "linear-gradient(135deg,#14532d,#166534)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-              <span style={{ color: "white", fontFamily: "'Inter',sans-serif", fontWeight: 800, fontSize: "0.58rem", lineHeight: 1 }}>90</span>
-              <span style={{ color: "white", fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: "0.4rem", lineHeight: 1, marginTop: "1px" }}>Days</span>
-            </div>
-            <span style={{ color: "#14532d", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.95rem" }}>Courses</span>
-          </Link>
-          <div className="hidden md:flex" style={{ gap: "1.75rem" }}>
-            {["Hire Talent", "About", "Blog"].map((item) => (
-              <Link key={item} href={`/${item.toLowerCase().replace(" ", "-")}`}
-                style={{ color: "#374151", fontFamily: "'Inter',sans-serif", fontWeight: 500, fontSize: "0.88rem", textDecoration: "none" }}
-              >
-                {item}
-              </Link>
-            ))}
-          </div>
-        </div>
-        <Link href="/register"
-          style={{ background: "#14532d", color: "white", borderRadius: "8px", padding: "0.5rem 1.4rem", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.85rem", textDecoration: "none" }}
-        >
-          Get Started
-        </Link>
-      </div>
-    </nav>
-  );
-}
+
 
 // ─── Sidebar ───────────────────────────────────────────────────────────────────
 function CategoryIcon({ icon }: { icon: string }) {
@@ -210,7 +180,8 @@ export default function CourseDetailPage({ params }: { params: Promise<{ slug: s
 
   return (
     <div style={{ background: "white", minHeight: "100vh", fontFamily: "'Inter',sans-serif" }}>
-      <Navbar />
+    
+      <CoursesNavbar/>
 
       {/* ── Breadcrumb ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ paddingTop: "1.25rem" }}>

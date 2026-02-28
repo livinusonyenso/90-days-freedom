@@ -69,6 +69,26 @@ export default function CoursesNavbar() {
             </div>
           </div>
 
+          {/* Admin link — only for admins */}
+          {user?.role === "admin" && (
+            <Link
+              href="/admin"
+              style={{
+                color: "#14532d",
+                fontFamily: "'Inter', sans-serif",
+                fontWeight: 600,
+                fontSize: "0.85rem",
+                textDecoration: "none",
+                background: "#f0fdf4",
+                border: "1px solid #bbf7d0",
+                borderRadius: "8px",
+                padding: "0.4rem 0.9rem",
+              }}
+            >
+              Admin
+            </Link>
+          )}
+
           {/* Right: user info + Sign Out OR Get Started */}
           <div className="hidden sm:flex items-center gap-3">
             {user && (
