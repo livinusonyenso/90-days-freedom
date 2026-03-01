@@ -8,6 +8,7 @@ const { testConnection } = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const courseRoutes = require("./routes/courseRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const contactRoutes = require("./routes/contactRoutes");
 
 const app = express();
 
@@ -38,7 +39,8 @@ app.use(express.json());
 // ─── Routes ──────────────────────────────────────────────────────────────────
 app.use("/auth", authRoutes);
 app.use("/", courseRoutes);       // GET /courses, GET /hire-talent
-app.use("/admin", adminRoutes);   // GET /admin/users
+app.use("/admin", adminRoutes);   // GET /admin/users, DELETE /admin/users/:id etc.
+app.use("/contact", contactRoutes); // POST /contact
 
 // ─── Health check ─────────────────────────────────────────────────────────────
 app.get("/health", (_, res) => res.json({ status: "ok" }));

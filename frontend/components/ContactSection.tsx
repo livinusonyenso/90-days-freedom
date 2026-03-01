@@ -1,18 +1,63 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 
 const subjects = ["General Inquiry", "Technical Support", "Billing", "Partnership"];
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export default function ContactSection() {
   const [selectedSubject, setSelectedSubject] = useState(0);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setError("");
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch(`${API_URL}/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          subject: subjects[selectedSubject],
+          message: formData.message,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        setFormData({ firstName: "", lastName: "", email: "", phone: "", message: "" });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        const errMsg = data.errors?.map((e: { message: string }) => e.message).join(" ") || data.message;
+        setError(errMsg);
+      }
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -67,15 +112,7 @@ export default function ContactSection() {
                 <ul className="space-y-6">
                   {/* Phone */}
                   <li className="flex items-center gap-4">
-                    <div
-                      className="flex items-center justify-center flex-shrink-0"
-                      style={{
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "50%",
-                        background: "rgba(255,255,255,0.08)",
-                      }}
-                    >
+                    <div className="flex items-center justify-center flex-shrink-0" style={{ width: "36px", height: "36px", borderRadius: "50%", background: "rgba(255,255,255,0.08)" }}>
                       <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
                           d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
@@ -87,15 +124,7 @@ export default function ContactSection() {
 
                   {/* Email */}
                   <li className="flex items-center gap-4">
-                    <div
-                      className="flex items-center justify-center flex-shrink-0"
-                      style={{
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "50%",
-                        background: "rgba(255,255,255,0.08)",
-                      }}
-                    >
+                    <div className="flex items-center justify-center flex-shrink-0" style={{ width: "36px", height: "36px", borderRadius: "50%", background: "rgba(255,255,255,0.08)" }}>
                       <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
                           d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
@@ -107,22 +136,10 @@ export default function ContactSection() {
 
                   {/* Address */}
                   <li className="flex items-start gap-4">
-                    <div
-                      className="flex items-center justify-center flex-shrink-0 mt-0.5"
-                      style={{
-                        width: "36px",
-                        height: "36px",
-                        borderRadius: "50%",
-                        background: "rgba(255,255,255,0.08)",
-                      }}
-                    >
+                    <div className="flex items-center justify-center flex-shrink-0 mt-0.5" style={{ width: "36px", height: "36px", borderRadius: "50%", background: "rgba(255,255,255,0.08)" }}>
                       <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
-                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                        />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
-                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     </div>
                     <span className="text-white text-sm leading-relaxed">
@@ -149,15 +166,9 @@ export default function ContactSection() {
                 </a>
               </div>
 
-              {/* Decorative circles — bottom right of green panel */}
-              <div
-                className="absolute"
-                style={{ bottom: "-20px", right: "-20px", width: "160px", height: "160px", borderRadius: "50%", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}
-              />
-              <div
-                className="absolute"
-                style={{ bottom: "10px", right: "10px", width: "100px", height: "100px", borderRadius: "50%", background: "rgba(255,255,255,0.07)" }}
-              />
+              {/* Decorative circles */}
+              <div className="absolute" style={{ bottom: "-20px", right: "-20px", width: "160px", height: "160px", borderRadius: "50%", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }} />
+              <div className="absolute" style={{ bottom: "10px", right: "10px", width: "100px", height: "100px", borderRadius: "50%", background: "rgba(255,255,255,0.07)" }} />
             </div>
 
             {/* ── Right: Form Panel ── */}
@@ -165,10 +176,7 @@ export default function ContactSection() {
               {submitted ? (
                 <div className="flex-1 flex items-center justify-center">
                   <div className="text-center">
-                    <div
-                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                      style={{ background: "#f0fdf4" }}
-                    >
+                    <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "#f0fdf4" }}>
                       <svg className="w-8 h-8" style={{ color: "#16a34a" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
@@ -176,23 +184,33 @@ export default function ContactSection() {
                     <p className="font-bold text-gray-900 text-xl" style={{ fontFamily: "'Inter', sans-serif" }}>
                       Message Sent!
                     </p>
-                    <p className="text-gray-500 text-sm mt-1">We'll get back to you shortly.</p>
+                    <p className="text-gray-500 text-sm mt-1">
+                      Check your inbox — we've sent you a confirmation email.
+                    </p>
                   </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
 
+                  {/* API error */}
+                  {error && (
+                    <div style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: "8px", padding: "0.6rem 1rem" }}>
+                      <p style={{ color: "#ef4444", fontSize: "0.8rem", margin: 0 }}>{error}</p>
+                    </div>
+                  )}
+
                   {/* Row 1: First Name / Last Name */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label
-                        className="block text-xs font-medium mb-1"
-                        style={{ color: "#9ca3af", fontFamily: "'Inter', sans-serif" }}
-                      >
+                      <label className="block text-xs font-medium mb-1" style={{ color: "#9ca3af", fontFamily: "'Inter', sans-serif" }}>
                         First Name
                       </label>
                       <input
+                        suppressHydrationWarning
                         type="text"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
                         required
                         placeholder="First Name"
                         className="w-full outline-none py-2 text-sm text-gray-900 placeholder-gray-300 bg-transparent transition-colors"
@@ -202,14 +220,15 @@ export default function ContactSection() {
                       />
                     </div>
                     <div>
-                      <label
-                        className="block text-xs font-medium mb-1"
-                        style={{ color: "#9ca3af", fontFamily: "'Inter', sans-serif" }}
-                      >
+                      <label className="block text-xs font-medium mb-1" style={{ color: "#9ca3af", fontFamily: "'Inter', sans-serif" }}>
                         Last Name
                       </label>
                       <input
+                        suppressHydrationWarning
                         type="text"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
                         required
                         placeholder="Doe"
                         className="w-full outline-none py-2 text-sm text-gray-900 placeholder-gray-300 bg-transparent transition-colors"
@@ -223,14 +242,15 @@ export default function ContactSection() {
                   {/* Row 2: Email / Phone */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label
-                        className="block text-xs font-medium mb-1"
-                        style={{ color: "#9ca3af", fontFamily: "'Inter', sans-serif" }}
-                      >
+                      <label className="block text-xs font-medium mb-1" style={{ color: "#9ca3af", fontFamily: "'Inter', sans-serif" }}>
                         Email
                       </label>
                       <input
+                        suppressHydrationWarning
                         type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         required
                         placeholder="you@example.com"
                         className="w-full outline-none py-2 text-sm text-gray-900 placeholder-gray-300 bg-transparent transition-colors"
@@ -240,14 +260,15 @@ export default function ContactSection() {
                       />
                     </div>
                     <div>
-                      <label
-                        className="block text-xs font-medium mb-1"
-                        style={{ color: "#9ca3af", fontFamily: "'Inter', sans-serif" }}
-                      >
+                      <label className="block text-xs font-medium mb-1" style={{ color: "#9ca3af", fontFamily: "'Inter', sans-serif" }}>
                         Phone Number
                       </label>
                       <input
+                        suppressHydrationWarning
                         type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
                         placeholder="+1 012 3456 789"
                         className="w-full outline-none py-2 text-sm text-gray-900 placeholder-gray-300 bg-transparent transition-colors"
                         style={{ borderBottom: "1.5px solid #e5e7eb" }}
@@ -259,29 +280,15 @@ export default function ContactSection() {
 
                   {/* Subject radio */}
                   <div>
-                    <label
-                      className="block text-xs font-medium mb-3"
-                      style={{ color: "#374151", fontFamily: "'Inter', sans-serif" }}
-                    >
+                    <label className="block text-xs font-medium mb-3" style={{ color: "#374151", fontFamily: "'Inter', sans-serif" }}>
                       Select Subject?
                     </label>
                     <div className="flex flex-wrap gap-x-6 gap-y-2">
                       {subjects.map((s, i) => (
-                        <label
-                          key={s}
-                          className="flex items-center gap-2 cursor-pointer"
-                          style={{ fontFamily: "'Inter', sans-serif" }}
-                        >
+                        <label key={s} className="flex items-center gap-2 cursor-pointer" style={{ fontFamily: "'Inter', sans-serif" }}>
                           <span
                             className="flex items-center justify-center flex-shrink-0 rounded-full transition-all"
-                            style={{
-                              width: "14px",
-                              height: "14px",
-                              border: selectedSubject === i
-                                ? "4px solid #15803d"
-                                : "1.5px solid #d1d5db",
-                              background: "white",
-                            }}
+                            style={{ width: "14px", height: "14px", border: selectedSubject === i ? "4px solid #15803d" : "1.5px solid #d1d5db", background: "white" }}
                             onClick={() => setSelectedSubject(i)}
                           />
                           <span
@@ -298,13 +305,13 @@ export default function ContactSection() {
 
                   {/* Message */}
                   <div>
-                    <label
-                      className="block text-xs font-medium mb-1"
-                      style={{ color: "#9ca3af", fontFamily: "'Inter', sans-serif" }}
-                    >
+                    <label className="block text-xs font-medium mb-1" style={{ color: "#9ca3af", fontFamily: "'Inter', sans-serif" }}>
                       Message
                     </label>
                     <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
                       required
                       placeholder="Write your message..."
                       rows={3}
@@ -319,15 +326,18 @@ export default function ContactSection() {
                   <div className="flex justify-end pt-1">
                     <button
                       type="submit"
+                      disabled={isSubmitting}
                       className="font-bold text-sm tracking-wide text-white px-8 py-3 rounded-lg transition-opacity duration-200 hover:opacity-90"
                       style={{
                         background: "linear-gradient(135deg, #0d3d1a 0%, #0a2e14 100%)",
                         fontFamily: "'Inter', sans-serif",
                         letterSpacing: "0.03em",
                         boxShadow: "0 2px 12px rgba(13,61,26,0.3)",
+                        opacity: isSubmitting ? 0.7 : 1,
+                        cursor: isSubmitting ? "not-allowed" : "pointer",
                       }}
                     >
-                      Send Message
+                      {isSubmitting ? "Sending…" : "Send Message"}
                     </button>
                   </div>
 
@@ -337,8 +347,6 @@ export default function ContactSection() {
           </div>
         </div>
       </section>
-
-  
     </>
   );
 }

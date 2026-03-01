@@ -43,6 +43,22 @@ async function setup() {
   );
   console.log("✅ Admin seeded → admin@90daysfreedom.com / Admin@1234");
 
+  // 4. Create contacts table
+  await conn.query(`
+    CREATE TABLE IF NOT EXISTS contacts (
+      id          INT AUTO_INCREMENT PRIMARY KEY,
+      first_name  VARCHAR(100)  NOT NULL,
+      last_name   VARCHAR(100)  NOT NULL,
+      email       VARCHAR(150)  NOT NULL,
+      phone       VARCHAR(30)   DEFAULT NULL,
+      subject     VARCHAR(100)  NOT NULL,
+      message     TEXT          NOT NULL,
+      status      ENUM('new', 'read', 'replied') NOT NULL DEFAULT 'new',
+      created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+  console.log("✅ Table 'contacts' ready");
+
   await conn.end();
   console.log("\n🎉 Setup complete. Run: npm run dev");
 }
