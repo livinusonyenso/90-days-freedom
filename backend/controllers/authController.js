@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const UserModel = require("../models/userModel");
+const { sendWelcomeEmail } = require("../services/emailService");
 
 /**
  * Generate a signed JWT for the given user.
@@ -32,6 +33,11 @@ async function register(req, res) {
     const user = await UserModel.findById(userId);
 
     const token = signToken(user);
+
+    // Send welcome email (non-blocking — don't fail registration if email fails)
+    sendWelcomeEmail({ name: user.name, email: user.email }).catch((err) => {
+      console.error("Welcome email failed (non-critical):", err.message);
+    });
 
     return res.status(201).json({
       success: true,

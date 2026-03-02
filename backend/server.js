@@ -13,9 +13,12 @@ const contactRoutes = require("./routes/contactRoutes");
 const app = express();
 
 // ─── Global Middleware ────────────────────────────────────────────────────────
-const allowedOrigins = (process.env.CLIENT_ORIGIN || "http://localhost:4000")
-  .split(",")
-  .map((o) => o.trim());
+const allowedOrigins = [
+  "https://codedlng.com",
+  "https://www.codedlng.com",
+  "http://localhost:3000",
+  "http://localhost:4000",
+];
 
 app.use(
   cors({
@@ -41,6 +44,21 @@ app.use("/auth", authRoutes);
 app.use("/", courseRoutes);       // GET /courses, GET /hire-talent
 app.use("/admin", adminRoutes);   // GET /admin/users, DELETE /admin/users/:id etc.
 app.use("/contact", contactRoutes); // POST /contact
+
+// ─── Root route ───────────────────────────────────────────────────────────────
+app.get("/", (_, res) => {
+  res.json({
+    success: true,
+    message: "90-Days Freedom System API is running.",
+    version: "1.0.0",
+    endpoints: {
+      auth: ["POST /auth/register", "POST /auth/login", "GET /auth/me"],
+      courses: ["GET /courses", "GET /hire-talent"],
+      contact: ["POST /contact"],
+      admin: ["GET /admin/users", "DELETE /admin/users/:id", "PATCH /admin/users/:id/role", "GET /admin/contacts"],
+    },
+  });
+});
 
 // ─── Health check ─────────────────────────────────────────────────────────────
 app.get("/health", (_, res) => res.json({ status: "ok" }));
