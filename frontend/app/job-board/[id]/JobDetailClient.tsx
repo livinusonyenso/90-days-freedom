@@ -4,10 +4,9 @@ import { useState, useRef } from "react";
 import Link from "next/link";
 import CoursesNavbar from "@/components/CoursesNavbar";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import { getJob, TYPE_COLORS, CATEGORY_ICONS } from "@/data/jobs";
+import { TYPE_COLORS, CATEGORY_ICONS } from "@/data/jobs";
+import { useJob } from "@/context/JobContext";
 import { notFound } from "next/navigation";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 interface FormData {
   fullName: string;
@@ -97,6 +96,7 @@ function FormField({
 }
 
 export default function JobDetailClient({ id }: { id: string }) {
+  const { getJob, submitApplication } = useJob();
   const job = getJob(id);
   if (!job) return notFound();
 
@@ -127,25 +127,20 @@ export default function JobDetailClient({ id }: { id: string }) {
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setApiError("");
     setIsSubmitting(true);
-    try {
-      const res = await fetch(`${API_URL}/job-application`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, jobId: job.id, jobTitle: job.title }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setSubmitted(true);
-        setFormData({ fullName: "", email: "", phone: "", githubUrl: "", linkedinUrl: "" });
-      } else {
-        const msg = data.errors?.map((e: { message: string }) => e.message).join(" ") || data.message;
-        setApiError(msg);
-      }
-    } catch {
-      setApiError("Network error. Please check your connection and try again.");
-    } finally {
-      setIsSubmitting(false);
+
+    const result = await submitApplication({
+      ...formData,
+      jobId: job.id,
+      jobTitle: job.title,
+    });
+
+    if (result.success) {
+      setSubmitted(true);
+      setFormData({ fullName: "", email: "", phone: "", githubUrl: "", linkedinUrl: "" });
+    } else {
+      setApiError(result.message);
     }
+    setIsSubmitting(false);
   };
 
   return (

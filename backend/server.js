@@ -41,11 +41,12 @@ app.options("*", cors());
 app.use(express.json());
 
 // ─── Routes ──────────────────────────────────────────────────────────────────
-app.use("/auth", authRoutes);
-app.use("/", courseRoutes);       // GET /courses, GET /hire-talent
-app.use("/admin", adminRoutes);   // GET /admin/users, DELETE /admin/users/:id etc.
-app.use("/contact", contactRoutes);           // POST /contact
-app.use("/job-application", jobRoutes);       // POST /job-application
+// Specific-prefix routes first, catch-all "/" last
+app.use("/auth", authRoutes);             // POST /auth/register, /auth/login, GET /auth/me
+app.use("/contact", contactRoutes);       // POST /contact
+app.use("/job-application", jobRoutes);   // POST /job-application
+app.use("/admin", adminRoutes);           // GET|DELETE|PATCH /admin/...
+app.use("/", courseRoutes);               // GET /courses, GET /hire-talent (must be last)
 
 // ─── Root route ───────────────────────────────────────────────────────────────
 app.get("/", (_, res) => {
@@ -85,6 +86,12 @@ async function start() {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
     console.log(`   ENV: ${process.env.NODE_ENV || "development"}`);
+    console.log("   Routes loaded:");
+    console.log("     POST /auth/register  POST /auth/login  GET /auth/me");
+    console.log("     POST /contact");
+    console.log("     POST /job-application  ✅");
+    console.log("     GET|DELETE|PATCH /admin/...");
+    console.log("     GET /courses  GET /hire-talent");
   });
 }
 

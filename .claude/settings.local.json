@@ -5,7 +5,8 @@
       "Bash(node -e:*)",
       "Bash(npm run build:*)",
       "Bash(node scripts/setup-db.js)",
-      "Bash(npx tsc --noEmit)"
+      "Bash(npx tsc --noEmit)",
+      "Bash(node scripts/migrate-job-applications.js)"
     ]
   }
 }

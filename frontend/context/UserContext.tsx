@@ -67,8 +67,20 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-      const data: AuthResponse = await res.json();
 
+      if (!res.ok) {
+        if (res.status === 401 || res.status === 400) {
+          return { success: false, message: "Invalid email or password. Please try again." };
+        }
+        if (res.status === 422) {
+          const data: AuthResponse = await res.json().catch(() => ({ success: false, message: "" }));
+          const msg = data.errors?.map((e) => e.message).join(" ") || "Please review your input.";
+          return { success: false, message: msg };
+        }
+        return { success: false, message: "Unable to sign in right now. Please try again." };
+      }
+
+      const data: AuthResponse = await res.json();
       if (data.success && data.token && data.user) {
         localStorage.setItem(TOKEN_KEY, data.token);
         localStorage.setItem(USER_KEY, JSON.stringify(data.user));
@@ -77,9 +89,11 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         router.push("/courses");
       }
 
-      return data;
+      return data.success
+        ? data
+        : { success: false, message: "Invalid email or password. Please try again." };
     } catch {
-      return { success: false, message: "Network error. Please try again." };
+      return { success: false, message: "Unable to connect. Please check your internet and try again." };
     }
   }, [router]);
 
@@ -91,8 +105,20 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
       });
-      const data: AuthResponse = await res.json();
 
+      if (!res.ok) {
+        if (res.status === 409) {
+          return { success: false, message: "An account with this email already exists." };
+        }
+        if (res.status === 422) {
+          const data: AuthResponse = await res.json().catch(() => ({ success: false, message: "" }));
+          const msg = data.errors?.map((e) => e.message).join(" ") || "Please review your input.";
+          return { success: false, message: msg };
+        }
+        return { success: false, message: "Unable to create your account right now. Please try again." };
+      }
+
+      const data: AuthResponse = await res.json();
       if (data.success && data.token && data.user) {
         localStorage.setItem(TOKEN_KEY, data.token);
         localStorage.setItem(USER_KEY, JSON.stringify(data.user));
@@ -101,9 +127,11 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         router.push("/courses");
       }
 
-      return data;
+      return data.success
+        ? data
+        : { success: false, message: "Unable to create your account right now. Please try again." };
     } catch {
-      return { success: false, message: "Network error. Please try again." };
+      return { success: false, message: "Unable to connect. Please check your internet and try again." };
     }
   }, [router]);
 

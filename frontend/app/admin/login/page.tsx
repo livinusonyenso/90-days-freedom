@@ -35,10 +35,22 @@ export default function AdminLoginPage() {
         body: JSON.stringify({ email, password }),
       });
 
+      if (!res.ok) {
+        if (res.status === 401 || res.status === 400) {
+          setError("Invalid email or password. Please try again.");
+        } else if (res.status >= 500) {
+          setError("Server error. Please try again in a moment.");
+        } else {
+          setError("Unable to sign in right now. Please try again.");
+        }
+        setIsSubmitting(false);
+        return;
+      }
+
       const data = await res.json();
 
       if (!data.success) {
-        setError(data.message || "Invalid credentials.");
+        setError("Invalid email or password. Please try again.");
         setIsSubmitting(false);
         return;
       }
@@ -57,7 +69,7 @@ export default function AdminLoginPage() {
       // Hard navigate so UserProvider rehydrates from localStorage
       window.location.href = "/admin";
     } catch {
-      setError("Network error. Is the backend running?");
+      setError("Unable to connect. Please check your internet and try again.");
       setIsSubmitting(false);
     }
   };

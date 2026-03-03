@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import CoursesNavbar from "@/components/CoursesNavbar";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import { jobs, TYPE_COLORS, CATEGORY_ICONS, type JobType, type JobCategory } from "@/data/jobs";
+import { TYPE_COLORS, CATEGORY_ICONS, type JobType, type JobCategory } from "@/data/jobs";
+import { useJob } from "@/context/JobContext";
 
 const ALL_TYPES: JobType[] = ["Remote", "Hybrid", "Onsite"];
 const ALL_CATEGORIES: JobCategory[] = ["Design", "Engineering", "Marketing", "Sales", "Content", "Operations"];
@@ -14,6 +15,7 @@ function pluralDays(n: number) {
 }
 
 export default function JobBoardPage() {
+  const { jobs } = useJob();
   const [search, setSearch] = useState("");
   const [activeType, setActiveType] = useState<JobType | "All">("All");
   const [activeCategory, setActiveCategory] = useState<JobCategory | "All">("All");

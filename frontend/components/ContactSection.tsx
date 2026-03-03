@@ -43,18 +43,31 @@ export default function ContactSection() {
         }),
       });
 
-      const data = await res.json();
+      if (!res.ok) {
+        if (res.status === 422) {
+          const data = await res.json().catch(() => ({}));
+          const errMsg = (data.errors as { message: string }[] | undefined)
+            ?.map((e) => e.message).join(" ")
+            || "Please review your input and try again.";
+          setError(errMsg);
+        } else if (res.status >= 500) {
+          setError("Our server is experiencing an issue. Please try again in a moment.");
+        } else {
+          setError("We couldn't send your message right now. Please try again.");
+        }
+        return;
+      }
 
+      const data = await res.json();
       if (data.success) {
         setSubmitted(true);
         setFormData({ firstName: "", lastName: "", email: "", phone: "", message: "" });
         setTimeout(() => setSubmitted(false), 5000);
       } else {
-        const errMsg = data.errors?.map((e: { message: string }) => e.message).join(" ") || data.message;
-        setError(errMsg);
+        setError("We couldn't send your message right now. Please try again.");
       }
     } catch {
-      setError("Network error. Please check your connection and try again.");
+      setError("Unable to send. Please check your internet connection and try again.");
     } finally {
       setIsSubmitting(false);
     }
