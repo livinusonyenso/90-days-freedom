@@ -38,4 +38,21 @@ async function getAllJobApplications(req, res) {
   }
 }
 
-module.exports = { submitJobApplication, getAllJobApplications };
+// ─── PATCH /admin/job-applications/:id/status ─────────────────────────────────
+async function updateJobApplicationStatus(req, res) {
+  const VALID = ["new", "reviewing", "interviewed", "rejected", "hired"];
+  const { id } = req.params;
+  const { status } = req.body;
+  if (!VALID.includes(status)) {
+    return res.status(400).json({ success: false, message: "Invalid status value." });
+  }
+  try {
+    await JobApplicationModel.updateStatus(id, status);
+    return res.json({ success: true, message: "Status updated." });
+  } catch (err) {
+    console.error("Update status error:", err);
+    return res.status(500).json({ success: false, message: "Server error." });
+  }
+}
+
+module.exports = { submitJobApplication, getAllJobApplications, updateJobApplicationStatus };
