@@ -1,12 +1,23 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useUser } from "@/context/UserContext";
+import ComingSoonModal from "@/components/ui/ComingSoonModal";
+
+// Add the href for pages that exist. Omit href (or set comingSoon: true) for pages not yet built.
+const NAV_LINKS: { label: string; href?: string }[] = [
+  { label: "Hire Talent", href: "/hire-talent" },
+  { label: "About" },
+  { label: "Blog" },
+];
 
 export default function CoursesNavbar() {
   const { user, logout } = useUser();
+  const [comingSoonPage, setComingSoonPage] = useState<string | null>(null);
 
   return (
+    <>
     <nav
       className="sticky top-0 z-50 bg-white"
       style={{ borderBottom: "1px solid #e5e7eb" }}
@@ -49,23 +60,44 @@ export default function CoursesNavbar() {
 
             {/* Nav links */}
             <div className="hidden md:flex items-center gap-7">
-              {["Hire Talent", "About", "Blog"].map((item) => (
-                <Link
-                  key={item}
-                  href={`/${item.toLowerCase().replace(" ", "-")}`}
-                  style={{
-                    color: "#374151",
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 500,
-                    fontSize: "0.9rem",
-                    textDecoration: "none",
-                  }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#166534")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#374151")}
-                >
-                  {item}
-                </Link>
-              ))}
+              {NAV_LINKS.map(({ label, href }) =>
+                href ? (
+                  <Link
+                    key={label}
+                    href={href}
+                    style={{
+                      color: "#374151",
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 500,
+                      fontSize: "0.9rem",
+                      textDecoration: "none",
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#166534")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#374151")}
+                  >
+                    {label}
+                  </Link>
+                ) : (
+                  <button
+                    key={label}
+                    onClick={() => setComingSoonPage(label)}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      padding: 0,
+                      color: "#374151",
+                      fontFamily: "'Inter', sans-serif",
+                      fontWeight: 500,
+                      fontSize: "0.9rem",
+                      cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "#166534")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = "#374151")}
+                  >
+                    {label}
+                  </button>
+                )
+              )}
             </div>
           </div>
 
@@ -148,5 +180,13 @@ export default function CoursesNavbar() {
         </div>
       </div>
     </nav>
+
+    {comingSoonPage && (
+      <ComingSoonModal
+        pageName={comingSoonPage}
+        onClose={() => setComingSoonPage(null)}
+      />
+    )}
+  </>
   );
 }
