@@ -5,8 +5,6 @@ import Link from "next/link";
 import CoursesNavbar from "@/components/CoursesNavbar";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
-
-
 // ─── Star Rating ──────────────────────────────────────────────────────────────
 function Stars({ rating, max = 5 }: { rating: number; max?: number }) {
   return (
@@ -28,7 +26,7 @@ const professionals = [
     id: 1, name: "Danny Walker", role: "Landing Page & Funnel Expert",
     rating: 3.5, projects: "1-120 Projects",
     bio: "Versaing. Wher themes decor scattering intriguing facets, and you're partner they whenever parameters a partners value.",
-    image: "images/danny.png  ",
+    image: "images/danny.png",
   },
   {
     id: 2, name: "Jessica Kalama", role: "Brand Designer",
@@ -118,22 +116,8 @@ const qualityFeatures = [
 // ─── Professional Card ────────────────────────────────────────────────────────
 function ProfessionalCard({ pro }: { pro: typeof professionals[0] }) {
   return (
-    <div
-      style={{
-        background: "white",
-        border: "1px solid #e5e7eb",
-        borderRadius: "12px",
-        padding: "1.1rem",
-        display: "flex",
-        flexDirection: "column",
-        gap: "0.6rem",
-        flex: "1 1 0",
-        minWidth: "200px",
-      }}
-    >
-      {/* Top row */}
+    <div className="professional-card">
       <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
-        {/* Avatar */}
         <div
           style={{
             width: "52px", height: "52px", borderRadius: "50%",
@@ -147,7 +131,6 @@ function ProfessionalCard({ pro }: { pro: typeof professionals[0] }) {
             onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
           />
         </div>
-        {/* Info */}
         <div style={{ flex: 1 }}>
           <p style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.9rem", color: "#111827", margin: 0 }}>
             {pro.name}
@@ -163,11 +146,9 @@ function ProfessionalCard({ pro }: { pro: typeof professionals[0] }) {
           </div>
         </div>
       </div>
-      {/* Bio */}
       <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.75rem", color: "#6b7280", lineHeight: 1.6, margin: 0 }}>
         {pro.bio}
       </p>
-      {/* CTA */}
       <Link
         href="#"
         style={{
@@ -189,378 +170,511 @@ export default function HireTalentPage() {
 
   return (
     <ProtectedRoute>
-    <div style={{ background: "white", minHeight: "100vh", fontFamily: "'Inter',sans-serif" }}>
-    
+      <style>{`
+        * { box-sizing: border-box; }
 
-<CoursesNavbar/>
-      {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <section style={{ borderBottom: "1px solid #e5e7eb" }}>
-        <div
-          className="max-w-5xl mx-auto px-4 sm:px-6"
-          style={{ paddingTop: "2.5rem", paddingBottom: "2.5rem", display: "flex", alignItems: "center", gap: "2rem" }}
-        >
-          {/* Left */}
-          <div style={{ flex: "1 1 0", minWidth: 0 }}>
-            <h1
-              style={{
-                fontFamily: "'Inter',sans-serif", fontWeight: 800,
-                fontSize: "clamp(1.6rem,3.5vw,2.2rem)", color: "#111827",
-                lineHeight: 1.2, marginBottom: "0.85rem",
-              }}
-            >
-              Hire Proven Talent to Grow Your Business
-            </h1>
-            <p style={{ color: "#6b7280", fontSize: "0.85rem", lineHeight: 1.65, marginBottom: "1.5rem", maxWidth: "420px" }}>
-              Connect with top-rated freelancers and agencies vetted to provide exceptional service and quality results.
-            </p>
-            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-              <Link
-                href="/register"
-                style={{
-                  background: "#14532d", color: "white", borderRadius: "8px",
-                  padding: "0.6rem 1.4rem", fontWeight: 700, fontSize: "0.85rem",
-                  textDecoration: "none",
-                }}
-              >
-                Get Started
-              </Link>
-              <Link
-                href="#talent"
-                style={{
-                  background: "white", color: "#374151",
-                  border: "1px solid #d1d5db", borderRadius: "8px",
-                  padding: "0.6rem 1.2rem", fontWeight: 600, fontSize: "0.85rem",
-                  textDecoration: "none", display: "flex", alignItems: "center", gap: "4px",
-                }}
-              >
-                Find Talent
-                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-          </div>
+        .page-section {
+          border-bottom: 1px solid #e5e7eb;
+        }
+        .page-inner {
+          max-width: 64rem;
+          margin: 0 auto;
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
 
-          {/* Right: illustration placeholder */}
-          <div
-            className="hidden sm:flex"
-            style={{
-              flexShrink: 0, width: "clamp(200px,30vw,280px)", height: "clamp(180px,26vw,250px)",
-              alignItems: "center", justifyContent: "center",
-            }}
-          >
-            <img
-              src="/images/hero-illustration.png"
-              alt="Team collaboration"
-              style={{ width: "100%", height: "100%", objectFit: "contain" }}
-              onError={(e) => {
-                const el = e.currentTarget as HTMLImageElement;
-                el.style.display = "none";
-                const parent = el.parentElement as HTMLDivElement;
-                parent.style.background = "linear-gradient(135deg,#f0fdf4,#dcfce7)";
-                parent.style.borderRadius = "50%";
-                parent.innerHTML = `<svg width="80" height="80" fill="none" viewBox="0 0 24 24" stroke="#14532d" stroke-width="0.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>`;
-              }}
-            />
-          </div>
-        </div>
-      </section>
+        /* Hero */
+        .hero-inner {
+          padding-top: 2rem;
+          padding-bottom: 2rem;
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+        }
+        .hero-text { flex: 1 1 0; min-width: 0; }
+        .hero-illustration {
+          flex-shrink: 0;
+          width: clamp(180px, 28vw, 260px);
+          height: clamp(160px, 24vw, 230px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
 
-      {/* ── Feature Highlights ────────────────────────────────────────────── */}
-      <section style={{ borderBottom: "1px solid #e5e7eb" }}>
-        <div
-          className="max-w-5xl mx-auto px-4 sm:px-6"
-          style={{
-            paddingTop: "1.75rem", paddingBottom: "1.75rem",
-            display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: "1.5rem",
-          }}
-        >
-          {[
-            {
-              icon: (
-                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#14532d" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              ),
-              title: "Pre-Vetted Experts Only",
-              desc: "Our selection process ensures quality",
-              bg: "#f0fdf4",
-            },
-            {
-              icon: (
-                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#14532d" strokeWidth={1.8}>
-                  <circle cx="12" cy="12" r="3" /><circle cx="12" cy="12" r="9" strokeWidth={1.4} />
-                  <circle cx="12" cy="12" r="6" strokeWidth={1.2} strokeDasharray="2 2" />
-                </svg>
-              ),
-              title: "Quality Leads Sourced for Success",
-              desc: "Leads that convert and scale your business",
-              bg: "#f0fdf4",
-            },
-            {
-              icon: (
-                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#14532d" strokeWidth={1.8}>
-                  <rect x="5" y="11" width="14" height="10" rx="2" /><path strokeLinecap="round" d="M8 11V7a4 4 0 018 0v4" />
-                </svg>
-              ),
-              title: "Safe Payment & Escrow System",
-              desc: "Secure payments and support",
-              bg: "#f0fdf4",
-            },
-          ].map((f, i) => (
-            <div key={i} style={{ display: "flex", gap: "0.85rem", alignItems: "flex-start" }}>
-              <div
-                style={{
-                  width: "42px", height: "42px", borderRadius: "10px",
-                  background: f.bg, display: "flex", alignItems: "center",
-                  justifyContent: "center", flexShrink: 0,
-                  border: "1px solid #bbf7d0",
-                }}
-              >
-                {f.icon}
-              </div>
-              <div>
-                <p style={{ fontWeight: 700, fontSize: "0.9rem", color: "#111827", margin: "0 0 3px", lineHeight: 1.3 }}>
-                  {f.title}
-                </p>
-                <p style={{ fontSize: "0.78rem", color: "#6b7280", margin: 0, lineHeight: 1.5 }}>
-                  {f.desc}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+        /* Feature highlights grid */
+        .features-grid {
+          padding-top: 1.75rem;
+          padding-bottom: 1.75rem;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1.25rem;
+        }
 
-      {/* ── Browse Top Services ───────────────────────────────────────────── */}
-      <section style={{ borderBottom: "1px solid #e5e7eb" }}>
-        <div
-          className="max-w-5xl mx-auto px-4 sm:px-6"
-          style={{ paddingTop: "2.5rem", paddingBottom: "2.5rem" }}
-        >
-          <h2 style={{ textAlign: "center", fontWeight: 800, fontSize: "1.25rem", color: "#111827", marginBottom: "1.75rem" }}>
-            Browse Top Services
-          </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: "1rem" }}>
-            {services.map((svc) => (
-              <div
-                key={svc.id}
-                style={{
-                  border: "1px solid #e5e7eb", borderRadius: "12px",
-                  padding: "1.25rem 1rem", display: "flex", flexDirection: "column",
-                  gap: "0.6rem", alignItems: "flex-start",
-                  background: "white",
-                }}
-              >
-                <div style={{ color: "#374151" }}>{svc.icon}</div>
-                <p style={{ fontWeight: 700, fontSize: "0.88rem", color: "#111827", margin: 0, lineHeight: 1.3 }}>
-                  {svc.title}
-                </p>
-                <p style={{ fontSize: "0.75rem", color: "#6b7280", margin: 0, lineHeight: 1.55, flex: 1 }}>
-                  {svc.desc}
-                </p>
-                <Link
-                  href="#"
+        /* Services grid */
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+          gap: 1rem;
+        }
+
+        /* Professionals grid */
+        .professionals-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 1rem;
+        }
+
+        /* Professional Card */
+        .professional-card {
+          background: white;
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          padding: 1.1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.6rem;
+        }
+
+        /* Quality grid */
+        .quality-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1rem;
+        }
+
+        /* FAQ / Contact panel */
+        .faq-panel {
+          border: 1px solid #e5e7eb;
+          border-radius: 14px;
+          display: grid;
+          grid-template-columns: 1fr auto;
+          overflow: hidden;
+        }
+        .faq-left {
+          padding: 1.75rem 2rem;
+          border-right: 1px solid #e5e7eb;
+        }
+        .faq-right {
+          padding: 1.75rem 1.75rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          min-width: 220px;
+        }
+
+        /* Price tabs scroll on mobile */
+        .tabs-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-bottom: 1.5rem;
+          border-bottom: 1px solid #e5e7eb;
+          padding-bottom: 0.75rem;
+        }
+        .tabs-scroll {
+          display: flex;
+          gap: 0.25rem;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          flex-wrap: nowrap;
+          max-width: 100%;
+          padding-bottom: 2px;
+        }
+        .tabs-scroll::-webkit-scrollbar { display: none; }
+
+        /* ── Mobile overrides ── */
+        @media (max-width: 640px) {
+          .hero-inner {
+            flex-direction: column;
+            gap: 1.5rem;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+          }
+          .hero-illustration {
+            display: flex !important;
+            width: 100%;
+            max-width: 240px;
+            height: 180px;
+            margin: 0 auto;
+          }
+          .hero-text { text-align: center; }
+          .hero-buttons {
+            justify-content: center !important;
+          }
+
+          .features-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+
+          .services-grid {
+            grid-template-columns: 1fr 1fr;
+          }
+
+          .professionals-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .quality-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .faq-panel {
+            grid-template-columns: 1fr;
+          }
+          .faq-left {
+            border-right: none;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1.25rem 1rem;
+          }
+          .faq-right {
+            padding: 1.25rem 1rem;
+            min-width: unset;
+          }
+
+          .tabs-row {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .services-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+
+      <div style={{ background: "white", minHeight: "100vh", fontFamily: "'Inter',sans-serif" }}>
+        <CoursesNavbar />
+
+        {/* ── Hero ──────────────────────────────────────────────────────────── */}
+        <section className="page-section">
+          <div className="page-inner">
+            <div className="hero-inner">
+              {/* Left */}
+              <div className="hero-text">
+                <h1
                   style={{
-                    display: "inline-block", background: "#14532d", color: "white",
-                    borderRadius: "8px", padding: "0.45rem 1rem",
-                    fontWeight: 700, fontSize: "0.78rem", textDecoration: "none",
-                    marginTop: "0.25rem",
+                    fontFamily: "'Inter',sans-serif", fontWeight: 800,
+                    fontSize: "clamp(1.5rem, 4vw, 2.2rem)", color: "#111827",
+                    lineHeight: 1.2, marginBottom: "0.85rem",
                   }}
                 >
-                  Find Talent
-                </Link>
+                  Hire Proven Talent to Grow Your Business
+                </h1>
+                <p style={{ color: "#6b7280", fontSize: "0.85rem", lineHeight: 1.65, marginBottom: "1.5rem", maxWidth: "420px" }}>
+                  Connect with top-rated freelancers and agencies vetted to provide exceptional service and quality results.
+                </p>
+                <div className="hero-buttons" style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+                  <Link
+                    href="/register"
+                    style={{
+                      background: "#14532d", color: "white", borderRadius: "8px",
+                      padding: "0.6rem 1.4rem", fontWeight: 700, fontSize: "0.85rem",
+                      textDecoration: "none",
+                    }}
+                  >
+                    Get Started
+                  </Link>
+                  <Link
+                    href="#talent"
+                    style={{
+                      background: "white", color: "#374151",
+                      border: "1px solid #d1d5db", borderRadius: "8px",
+                      padding: "0.6rem 1.2rem", fontWeight: 600, fontSize: "0.85rem",
+                      textDecoration: "none", display: "flex", alignItems: "center", gap: "4px",
+                    }}
+                  >
+                    Find Talent
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ── Recommended Professionals ─────────────────────────────────────── */}
-      <section id="talent" style={{ borderBottom: "1px solid #e5e7eb" }}>
-        <div
-          className="max-w-5xl mx-auto px-4 sm:px-6"
-          style={{ paddingTop: "2.5rem", paddingBottom: "2.5rem" }}
-        >
-          <h2 style={{ fontWeight: 800, fontSize: "1.2rem", color: "#111827", marginBottom: "1.1rem" }}>
-            Recommended Professionals
-          </h2>
-
-          {/* Filter tabs + Sort */}
-          <div
-            style={{
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-              flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.5rem",
-              borderBottom: "1px solid #e5e7eb", paddingBottom: "0.75rem",
-            }}
-          >
-            <div style={{ display: "flex", gap: "0.25rem", flexWrap: "wrap" }}>
-              {priceTabs.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  style={{
-                    border: "none", cursor: "pointer",
-                    padding: "0.3rem 0.75rem", borderRadius: "6px",
-                    fontFamily: "'Inter',sans-serif", fontSize: "0.78rem",
-                    fontWeight: activeTab === tab ? 700 : 400,
-                    color: activeTab === tab ? "#111827" : "#6b7280",
-                    background: activeTab === tab ? "#f3f4f6" : "transparent",
-                    transition: "all 0.15s",
+              {/* Right: illustration */}
+              <div className="hero-illustration">
+                <img
+                  src="/images/hero-illustration.png"
+                  alt="Team collaboration"
+                  style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                  onError={(e) => {
+                    const el = e.currentTarget as HTMLImageElement;
+                    el.style.display = "none";
+                    const parent = el.parentElement as HTMLDivElement;
+                    parent.style.background = "linear-gradient(135deg,#f0fdf4,#dcfce7)";
+                    parent.style.borderRadius = "50%";
+                    parent.innerHTML = `<svg width="80" height="80" fill="none" viewBox="0 0 24 24" stroke="#14532d" stroke-width="0.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>`;
                   }}
-                >
-                  {tab}
-                </button>
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Feature Highlights ────────────────────────────────────────────── */}
+        <section className="page-section">
+          <div className="page-inner">
+            <div className="features-grid">
+              {[
+                {
+                  icon: (
+                    <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#14532d" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  ),
+                  title: "Pre-Vetted Experts Only",
+                  desc: "Our selection process ensures quality",
+                },
+                {
+                  icon: (
+                    <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#14532d" strokeWidth={1.8}>
+                      <circle cx="12" cy="12" r="3" /><circle cx="12" cy="12" r="9" strokeWidth={1.4} />
+                      <circle cx="12" cy="12" r="6" strokeWidth={1.2} strokeDasharray="2 2" />
+                    </svg>
+                  ),
+                  title: "Quality Leads Sourced for Success",
+                  desc: "Leads that convert and scale your business",
+                },
+                {
+                  icon: (
+                    <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#14532d" strokeWidth={1.8}>
+                      <rect x="5" y="11" width="14" height="10" rx="2" /><path strokeLinecap="round" d="M8 11V7a4 4 0 018 0v4" />
+                    </svg>
+                  ),
+                  title: "Safe Payment & Escrow System",
+                  desc: "Secure payments and support",
+                },
+              ].map((f, i) => (
+                <div key={i} style={{ display: "flex", gap: "0.85rem", alignItems: "flex-start" }}>
+                  <div
+                    style={{
+                      width: "42px", height: "42px", borderRadius: "10px",
+                      background: "#f0fdf4", display: "flex", alignItems: "center",
+                      justifyContent: "center", flexShrink: 0,
+                      border: "1px solid #bbf7d0",
+                    }}
+                  >
+                    {f.icon}
+                  </div>
+                  <div>
+                    <p style={{ fontWeight: 700, fontSize: "0.9rem", color: "#111827", margin: "0 0 3px", lineHeight: 1.3 }}>
+                      {f.title}
+                    </p>
+                    <p style={{ fontSize: "0.78rem", color: "#6b7280", margin: 0, lineHeight: 1.5 }}>
+                      {f.desc}
+                    </p>
+                  </div>
+                </div>
               ))}
             </div>
-            <span style={{ fontSize: "0.78rem", color: "#374151" }}>
-              Sort by: <strong>Best Match</strong>
-            </span>
           </div>
+        </section>
 
-          {/* Cards */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: "1rem" }}>
-            {professionals.map((pro) => (
-              <ProfessionalCard key={pro.id} pro={pro} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Quality Results ───────────────────────────────────────────────── */}
-      <section style={{ borderBottom: "1px solid #e5e7eb" }}>
-        <div
-          className="max-w-5xl mx-auto px-4 sm:px-6"
-          style={{ paddingTop: "2.5rem", paddingBottom: "2.5rem" }}
-        >
-          <h2 style={{ textAlign: "center", fontWeight: 800, fontSize: "1.2rem", color: "#111827", marginBottom: "1.75rem" }}>
-            Quality Results from Our Vetted Experts
-          </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: "1rem" }}>
-            {qualityFeatures.map((f, i) => (
-              <div
-                key={i}
-                style={{
-                  border: "1px solid #e5e7eb", borderRadius: "12px",
-                  padding: "1.5rem 1.25rem", display: "flex", flexDirection: "column",
-                  gap: "0.75rem", alignItems: "flex-start", background: "white",
-                }}
-              >
+        {/* ── Browse Top Services ───────────────────────────────────────────── */}
+        <section className="page-section">
+          <div className="page-inner" style={{ paddingTop: "2.5rem", paddingBottom: "2.5rem" }}>
+            <h2 style={{ textAlign: "center", fontWeight: 800, fontSize: "1.25rem", color: "#111827", marginBottom: "1.75rem" }}>
+              Browse Top Services
+            </h2>
+            <div className="services-grid">
+              {services.map((svc) => (
                 <div
+                  key={svc.id}
                   style={{
-                    width: "46px", height: "46px", borderRadius: "50%",
-                    background: "#f0fdf4", display: "flex", alignItems: "center",
-                    justifyContent: "center", flexShrink: 0,
+                    border: "1px solid #e5e7eb", borderRadius: "12px",
+                    padding: "1.25rem 1rem", display: "flex", flexDirection: "column",
+                    gap: "0.6rem", alignItems: "flex-start", background: "white",
                   }}
                 >
-                  {f.icon}
+                  <div style={{ color: "#374151" }}>{svc.icon}</div>
+                  <p style={{ fontWeight: 700, fontSize: "0.88rem", color: "#111827", margin: 0, lineHeight: 1.3 }}>
+                    {svc.title}
+                  </p>
+                  <p style={{ fontSize: "0.75rem", color: "#6b7280", margin: 0, lineHeight: 1.55, flex: 1 }}>
+                    {svc.desc}
+                  </p>
+                  <Link
+                    href="#"
+                    style={{
+                      display: "inline-block", background: "#14532d", color: "white",
+                      borderRadius: "8px", padding: "0.45rem 1rem",
+                      fontWeight: 700, fontSize: "0.78rem", textDecoration: "none",
+                      marginTop: "0.25rem",
+                    }}
+                  >
+                    Find Talent
+                  </Link>
                 </div>
-                <p style={{ fontWeight: 700, fontSize: "0.9rem", color: "#111827", margin: 0, lineHeight: 1.3 }}>
-                  {f.title}
-                </p>
-                <p style={{ fontSize: "0.78rem", color: "#6b7280", margin: 0, lineHeight: 1.6 }}>
-                  {f.desc}
-                </p>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Recommended Professionals ─────────────────────────────────────── */}
+        <section id="talent" className="page-section">
+          <div className="page-inner" style={{ paddingTop: "2.5rem", paddingBottom: "2.5rem" }}>
+            <h2 style={{ fontWeight: 800, fontSize: "1.2rem", color: "#111827", marginBottom: "1.1rem" }}>
+              Recommended Professionals
+            </h2>
+
+            {/* Filter tabs + Sort */}
+            <div className="tabs-row">
+              <div className="tabs-scroll">
+                {priceTabs.map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    style={{
+                      border: "none", cursor: "pointer", whiteSpace: "nowrap",
+                      padding: "0.3rem 0.75rem", borderRadius: "6px",
+                      fontFamily: "'Inter',sans-serif", fontSize: "0.78rem",
+                      fontWeight: activeTab === tab ? 700 : 400,
+                      color: activeTab === tab ? "#111827" : "#6b7280",
+                      background: activeTab === tab ? "#f3f4f6" : "transparent",
+                      transition: "all 0.15s", flexShrink: 0,
+                    }}
+                  >
+                    {tab}
+                  </button>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <span style={{ fontSize: "0.78rem", color: "#374151", whiteSpace: "nowrap" }}>
+                Sort by: <strong>Best Match</strong>
+              </span>
+            </div>
 
-      {/* ── FAQ / Contact ─────────────────────────────────────────────────── */}
-      <section style={{ borderBottom: "1px solid #e5e7eb" }}>
-        <div
-          className="max-w-5xl mx-auto px-4 sm:px-6"
-          style={{ paddingTop: "2rem", paddingBottom: "2rem" }}
-        >
-          <div
-            style={{
-              border: "1px solid #e5e7eb", borderRadius: "14px",
-              display: "grid", gridTemplateColumns: "1fr auto",
-              overflow: "hidden",
-            }}
-          >
-            {/* Left: testimonial */}
-            <div style={{ padding: "1.75rem 2rem", borderRight: "1px solid #e5e7eb" }}>
-              <h3 style={{ fontWeight: 800, fontSize: "1.1rem", color: "#111827", marginBottom: "1.25rem" }}>
-                Have Questions? Find Answers Here
-              </h3>
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "0.85rem" }}>
+            {/* Cards */}
+            <div className="professionals-grid">
+              {professionals.map((pro) => (
+                <ProfessionalCard key={pro.id} pro={pro} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Quality Results ───────────────────────────────────────────────── */}
+        <section className="page-section">
+          <div className="page-inner" style={{ paddingTop: "2.5rem", paddingBottom: "2.5rem" }}>
+            <h2 style={{ textAlign: "center", fontWeight: 800, fontSize: "1.2rem", color: "#111827", marginBottom: "1.75rem" }}>
+              Quality Results from Our Vetted Experts
+            </h2>
+            <div className="quality-grid">
+              {qualityFeatures.map((f, i) => (
                 <div
+                  key={i}
                   style={{
-                    width: "48px", height: "48px", borderRadius: "50%",
-                    background: "linear-gradient(135deg,#d1d5db,#9ca3af)",
-                    flexShrink: 0, overflow: "hidden",
+                    border: "1px solid #e5e7eb", borderRadius: "12px",
+                    padding: "1.5rem 1.25rem", display: "flex", flexDirection: "column",
+                    gap: "0.75rem", alignItems: "flex-start", background: "white",
                   }}
                 >
-                  <img
-                    src="/images/tiana.png" alt="Tiana"
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-                  />
-                </div>
-                <div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "3px", flexWrap: "wrap" }}>
-                    <span style={{ fontWeight: 700, fontSize: "0.85rem", color: "#111827" }}>
-                      Tiana | CTO, Underscore
-                    </span>
-                    <Stars rating={4} />
-                    <span style={{ fontSize: "0.75rem", color: "#6b7280" }}>4.8</span>
+                  <div
+                    style={{
+                      width: "46px", height: "46px", borderRadius: "50%",
+                      background: "#f0fdf4", display: "flex", alignItems: "center",
+                      justifyContent: "center", flexShrink: 0,
+                    }}
+                  >
+                    {f.icon}
                   </div>
-                  <p style={{ fontSize: "0.78rem", color: "#374151", lineHeight: 1.65, margin: 0, fontStyle: "italic" }}>
-                    "Hiring through this platform completely transformed our marketing strategy. We saw an increase in leads within use a few weeks. Highly recommend."
+                  <p style={{ fontWeight: 700, fontSize: "0.9rem", color: "#111827", margin: 0, lineHeight: 1.3 }}>
+                    {f.title}
+                  </p>
+                  <p style={{ fontSize: "0.78rem", color: "#6b7280", margin: 0, lineHeight: 1.6 }}>
+                    {f.desc}
                   </p>
                 </div>
-              </div>
-            </div>
-
-            {/* Right: contact */}
-            <div
-              style={{
-                padding: "1.75rem 1.75rem", display: "flex", flexDirection: "column",
-                gap: "0.75rem", minWidth: "240px",
-              }}
-            >
-              <p style={{ fontWeight: 800, fontSize: "0.85rem", color: "#111827", margin: "0 0 0.25rem", letterSpacing: "0.04em" }}>
-                CONTACT US
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#6b7280" strokeWidth={1.8}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span style={{ fontSize: "0.78rem", color: "#374151" }}>contact@coourses.com</span>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#6b7280" strokeWidth={1.8}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                <span style={{ fontSize: "0.78rem", color: "#374151" }}>(585) 123-4567</span>
-              </div>
-              <button
-                style={{
-                  background: "#14532d", color: "white", border: "none",
-                  borderRadius: "8px", padding: "0.6rem 1.25rem",
-                  fontFamily: "'Inter',sans-serif", fontWeight: 700,
-                  fontSize: "0.82rem", cursor: "pointer", marginTop: "0.5rem",
-                  transition: "opacity 0.15s",
-                }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.opacity = "0.88")}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.opacity = "1")}
-              >
-                Start Message
-              </button>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── Footer ────────────────────────────────────────────────────────── */}
-      <footer style={{ padding: "1.25rem", textAlign: "center" }}>
-        <p style={{ fontSize: "0.78rem", color: "#9ca3af", margin: 0 }}>
-          © 2026 Courses. All rights reserved.
-        </p>
-      </footer>
-    </div>
+        {/* ── FAQ / Contact ─────────────────────────────────────────────────── */}
+        <section className="page-section">
+          <div className="page-inner" style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
+            <div className="faq-panel">
+              {/* Left: testimonial */}
+              <div className="faq-left">
+                <h3 style={{ fontWeight: 800, fontSize: "1.1rem", color: "#111827", marginBottom: "1.25rem" }}>
+                  Have Questions? Find Answers Here
+                </h3>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: "0.85rem" }}>
+                  <div
+                    style={{
+                      width: "48px", height: "48px", borderRadius: "50%",
+                      background: "linear-gradient(135deg,#d1d5db,#9ca3af)",
+                      flexShrink: 0, overflow: "hidden",
+                    }}
+                  >
+                    <img
+                      src="/images/tiana.png" alt="Tiana"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                    />
+                  </div>
+                  <div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "3px", flexWrap: "wrap" }}>
+                      <span style={{ fontWeight: 700, fontSize: "0.85rem", color: "#111827" }}>
+                        Tiana | CTO, Underscore
+                      </span>
+                      <Stars rating={4} />
+                      <span style={{ fontSize: "0.75rem", color: "#6b7280" }}>4.8</span>
+                    </div>
+                    <p style={{ fontSize: "0.78rem", color: "#374151", lineHeight: 1.65, margin: 0, fontStyle: "italic" }}>
+                      "Hiring through this platform completely transformed our marketing strategy. We saw an increase in leads within use a few weeks. Highly recommend."
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: contact */}
+              <div className="faq-right">
+                <p style={{ fontWeight: 800, fontSize: "0.85rem", color: "#111827", margin: "0 0 0.25rem", letterSpacing: "0.04em" }}>
+                  CONTACT US
+                </p>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                  <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#6b7280" strokeWidth={1.8}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span style={{ fontSize: "0.78rem", color: "#374151" }}>contact@coourses.com</span>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                  <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#6b7280" strokeWidth={1.8}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <span style={{ fontSize: "0.78rem", color: "#374151" }}>(585) 123-4567</span>
+                </div>
+                <button
+                  style={{
+                    background: "#14532d", color: "white", border: "none",
+                    borderRadius: "8px", padding: "0.6rem 1.25rem",
+                    fontFamily: "'Inter',sans-serif", fontWeight: 700,
+                    fontSize: "0.82rem", cursor: "pointer", marginTop: "0.5rem",
+                    transition: "opacity 0.15s", width: "100%",
+                  }}
+                  onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.opacity = "0.88")}
+                  onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.opacity = "1")}
+                >
+                  Start Message
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Footer ────────────────────────────────────────────────────────── */}
+        <footer style={{ padding: "1.25rem", textAlign: "center" }}>
+          <p style={{ fontSize: "0.78rem", color: "#9ca3af", margin: 0 }}>
+            © 2026 Courses. All rights reserved.
+          </p>
+        </footer>
+      </div>
     </ProtectedRoute>
   );
 }

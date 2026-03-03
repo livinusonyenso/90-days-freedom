@@ -2,10 +2,13 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    turbopack: {
-      root: path.resolve(__dirname),
-    },
+  output: "export",
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
+  turbopack: {
+    root: path.resolve(__dirname),
   },
 };
 
