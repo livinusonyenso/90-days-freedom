@@ -9,6 +9,7 @@ const authRoutes = require("./routes/authRoutes");
 const courseRoutes = require("./routes/courseRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const contactRoutes = require("./routes/contactRoutes");
+const jobRoutes = require("./routes/jobRoutes");
 
 const app = express();
 
@@ -43,7 +44,8 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/", courseRoutes);       // GET /courses, GET /hire-talent
 app.use("/admin", adminRoutes);   // GET /admin/users, DELETE /admin/users/:id etc.
-app.use("/contact", contactRoutes); // POST /contact
+app.use("/contact", contactRoutes);           // POST /contact
+app.use("/job-application", jobRoutes);       // POST /job-application
 
 // ─── Root route ───────────────────────────────────────────────────────────────
 app.get("/", (_, res) => {
@@ -55,6 +57,7 @@ app.get("/", (_, res) => {
       auth: ["POST /auth/register", "POST /auth/login", "GET /auth/me"],
       courses: ["GET /courses", "GET /hire-talent"],
       contact: ["POST /contact"],
+      jobs: ["POST /job-application"],
       admin: ["GET /admin/users", "DELETE /admin/users/:id", "PATCH /admin/users/:id/role", "GET /admin/contacts"],
     },
   });

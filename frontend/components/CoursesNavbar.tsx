@@ -8,6 +8,7 @@ import ComingSoonModal from "@/components/ui/ComingSoonModal";
 // Add the href for pages that exist. Omit href (or set comingSoon: true) for pages not yet built.
 const NAV_LINKS: { label: string; href?: string }[] = [
   { label: "Hire Talent", href: "/hire-talent" },
+  { label: "Job Board", href: "/job-board" },
   { label: "About" },
   { label: "Blog" },
 ];

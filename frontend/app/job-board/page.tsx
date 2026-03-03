@@ -1,0 +1,235 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import CoursesNavbar from "@/components/CoursesNavbar";
+import ProtectedRoute from "@/components/ProtectedRoute";
+import { jobs, TYPE_COLORS, CATEGORY_ICONS, type JobType, type JobCategory } from "@/data/jobs";
+
+const ALL_TYPES: JobType[] = ["Remote", "Hybrid", "Onsite"];
+const ALL_CATEGORIES: JobCategory[] = ["Design", "Engineering", "Marketing", "Sales", "Content", "Operations"];
+
+function pluralDays(n: number) {
+  return n === 1 ? "1 day ago" : `${n} days ago`;
+}
+
+export default function JobBoardPage() {
+  const [search, setSearch] = useState("");
+  const [activeType, setActiveType] = useState<JobType | "All">("All");
+  const [activeCategory, setActiveCategory] = useState<JobCategory | "All">("All");
+
+  const filtered = jobs.filter((job) => {
+    const matchSearch =
+      search.trim() === "" ||
+      job.title.toLowerCase().includes(search.toLowerCase()) ||
+      job.company.toLowerCase().includes(search.toLowerCase()) ||
+      job.location.toLowerCase().includes(search.toLowerCase());
+    const matchType = activeType === "All" || job.type === activeType;
+    const matchCat = activeCategory === "All" || job.category === activeCategory;
+    return matchSearch && matchType && matchCat;
+  });
+
+  return (
+    <ProtectedRoute>
+      <div style={{ background: "#f9fafb", minHeight: "100vh", fontFamily: "'Inter', sans-serif" }}>
+        <CoursesNavbar />
+
+        {/* ── Hero ── */}
+        <div style={{ background: "linear-gradient(135deg, #063114 0%, #0d4a1e 60%, #14532d 100%)", padding: "3rem 1.5rem 2.5rem" }}>
+          <div className="max-w-5xl mx-auto">
+            <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.78rem", fontWeight: 600, letterSpacing: "0.1em", marginBottom: "0.5rem" }}>
+              WE&apos;RE HIRING
+            </p>
+            <h1 style={{ color: "white", fontWeight: 800, fontSize: "clamp(1.75rem, 4vw, 2.5rem)", margin: "0 0 0.6rem", lineHeight: 1.15 }}>
+              Join the 90-Days Freedom Team
+            </h1>
+            <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.95rem", maxWidth: "520px", lineHeight: 1.7, margin: 0 }}>
+              Help us build the platform that helps entrepreneurs build self-running businesses. Remote-first, mission-driven, and growing fast.
+            </p>
+
+            {/* Search */}
+            <div style={{
+              marginTop: "1.75rem", background: "white", borderRadius: "10px",
+              display: "flex", alignItems: "center", gap: "0.75rem",
+              padding: "0.6rem 1rem", maxWidth: "460px",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
+            }}>
+              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#9ca3af" strokeWidth={2}>
+                <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" d="M21 21l-4.35-4.35" />
+              </svg>
+              <input
+                suppressHydrationWarning
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search roles, locations…"
+                style={{ border: "none", outline: "none", background: "transparent", fontFamily: "'Inter', sans-serif", fontSize: "0.88rem", color: "#111827", width: "100%" }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* ── Filters + Content ── */}
+        <div className="max-w-5xl mx-auto px-4 sm:px-6" style={{ paddingTop: "2rem", paddingBottom: "4rem" }}>
+
+          {/* Filter row */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "1.75rem", alignItems: "center" }}>
+            {/* Type filters */}
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+              {(["All", ...ALL_TYPES] as const).map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setActiveType(t)}
+                  style={{
+                    border: activeType === t ? "1.5px solid #14532d" : "1.5px solid #e5e7eb",
+                    background: activeType === t ? "#14532d" : "white",
+                    color: activeType === t ? "white" : "#374151",
+                    borderRadius: "20px", padding: "0.3rem 0.85rem",
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.78rem",
+                    fontWeight: 600, cursor: "pointer", transition: "all 0.15s",
+                  }}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+
+            {/* Divider */}
+            <div style={{ width: "1px", height: "20px", background: "#e5e7eb" }} />
+
+            {/* Category filters */}
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+              {(["All", ...ALL_CATEGORIES] as const).map((c) => (
+                <button
+                  key={c}
+                  onClick={() => setActiveCategory(c)}
+                  style={{
+                    border: activeCategory === c ? "1.5px solid #6b7280" : "1.5px solid #e5e7eb",
+                    background: activeCategory === c ? "#111827" : "white",
+                    color: activeCategory === c ? "white" : "#374151",
+                    borderRadius: "20px", padding: "0.3rem 0.85rem",
+                    fontFamily: "'Inter', sans-serif", fontSize: "0.78rem",
+                    fontWeight: 600, cursor: "pointer", transition: "all 0.15s",
+                  }}
+                >
+                  {c === "All" ? "All Roles" : `${CATEGORY_ICONS[c]} ${c}`}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Count */}
+          <p style={{ fontSize: "0.82rem", color: "#6b7280", marginBottom: "1.25rem", fontWeight: 500 }}>
+            {filtered.length} open position{filtered.length !== 1 ? "s" : ""}
+          </p>
+
+          {/* Job cards */}
+          {filtered.length === 0 ? (
+            <div style={{ textAlign: "center", padding: "4rem 0" }}>
+              <div style={{ fontSize: "2.5rem", marginBottom: "0.75rem" }}>🔍</div>
+              <p style={{ fontWeight: 700, fontSize: "1rem", color: "#111827", marginBottom: "0.4rem" }}>No roles found</p>
+              <p style={{ fontSize: "0.85rem", color: "#6b7280" }}>Try adjusting your search or filters.</p>
+            </div>
+          ) : (
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              {filtered.map((job) => {
+                const typeStyle = TYPE_COLORS[job.type];
+                return (
+                  <div
+                    key={job.id}
+                    style={{
+                      background: "white", borderRadius: "12px",
+                      border: "1px solid #e5e7eb",
+                      padding: "1.4rem 1.6rem",
+                      boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+                      transition: "box-shadow 0.2s, border-color 0.2s",
+                      display: "flex", alignItems: "flex-start", gap: "1.1rem",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 16px rgba(0,0,0,0.09)";
+                      (e.currentTarget as HTMLDivElement).style.borderColor = "#d1d5db";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 1px 4px rgba(0,0,0,0.04)";
+                      (e.currentTarget as HTMLDivElement).style.borderColor = "#e5e7eb";
+                    }}
+                  >
+                    {/* Company icon */}
+                    <div style={{
+                      width: "48px", height: "48px", borderRadius: "10px", flexShrink: 0,
+                      background: "linear-gradient(135deg, #063114, #14532d)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      fontSize: "1.3rem",
+                    }}>
+                      {CATEGORY_ICONS[job.category]}
+                    </div>
+
+                    {/* Main content */}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+                        <div>
+                          <h3 style={{ fontWeight: 700, fontSize: "1rem", color: "#111827", margin: "0 0 4px" }}>
+                            {job.title}
+                          </h3>
+                          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
+                            <span style={{ fontSize: "0.82rem", color: "#6b7280" }}>{job.company}</span>
+                            <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: "#d1d5db" }} />
+                            <span style={{ fontSize: "0.82rem", color: "#6b7280" }}>{job.location}</span>
+                            <span style={{ width: "3px", height: "3px", borderRadius: "50%", background: "#d1d5db" }} />
+                            <span style={{ fontSize: "0.75rem", color: "#9ca3af" }}>{pluralDays(job.postedDays)}</span>
+                          </div>
+                        </div>
+
+                        {/* Right: salary + type + button */}
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", flexShrink: 0, flexWrap: "wrap" }}>
+                          <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "#14532d" }}>{job.salary}</span>
+                          <span style={{
+                            fontSize: "0.72rem", fontWeight: 700, borderRadius: "20px",
+                            padding: "0.2rem 0.65rem", background: typeStyle.bg, color: typeStyle.color,
+                          }}>
+                            {job.type}
+                          </span>
+                          <Link
+                            href={`/job-board/${job.id}`}
+                            style={{
+                              background: "#14532d", color: "white", textDecoration: "none",
+                              borderRadius: "8px", padding: "0.45rem 1.1rem",
+                              fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.82rem",
+                              display: "inline-flex", alignItems: "center", gap: "4px",
+                              transition: "opacity 0.15s",
+                            }}
+                            onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.88")}
+                            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")}
+                          >
+                            View Job
+                            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </Link>
+                        </div>
+                      </div>
+
+                      {/* Short desc */}
+                      <p style={{ margin: "0.65rem 0 0", fontSize: "0.83rem", color: "#6b7280", lineHeight: 1.65 }}>
+                        {job.shortDesc}
+                      </p>
+
+                      {/* Category tag */}
+                      <div style={{ marginTop: "0.65rem" }}>
+                        <span style={{
+                          fontSize: "0.72rem", fontWeight: 600, color: "#374151",
+                          background: "#f3f4f6", borderRadius: "6px", padding: "0.2rem 0.6rem",
+                        }}>
+                          {job.category}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+    </ProtectedRoute>
+  );
+}
