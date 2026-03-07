@@ -7,7 +7,8 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "setup:db": "node scripts/setup-db.js",
-    "migrate:jobs": "node scripts/migrate-job-applications.js"
+    "migrate:jobs": "node scripts/migrate-job-applications.js",
+    "migrate": "node scripts/migrate.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
