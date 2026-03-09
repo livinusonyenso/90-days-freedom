@@ -119,7 +119,7 @@ export default function Pricing() {
                 className="font-bold text-white"
                 style={{ fontSize: "2.75rem", lineHeight: 1, fontFamily: "'Inter', sans-serif" }}
               >
-                $49.99
+                $9.99
               </span>
               <div className="mb-0.5">
                 <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.68rem", lineHeight: 1.3 }}>
