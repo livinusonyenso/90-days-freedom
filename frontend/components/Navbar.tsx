@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Features", href: "#features" },
@@ -53,10 +54,7 @@ export default function Navbar() {
 
           {/* ── Logo Badge ── */}
           <Link href="/" className="flex items-center shrink-0">
-            <div className="w-11 h-11 rounded-full bg-[#22c55e] flex flex-col items-center justify-center leading-none select-none">
-              <span className="text-white font-bold text-[15px] leading-none">90</span>
-              <span className="text-white font-medium text-[9px] leading-none mt-0.5">Days</span>
-            </div>
+            <Image src="/images/logo.png" alt="90 Days Freedom System" width={44} height={44} className="rounded-full" />
           </Link>
 
           {/* ── Desktop Nav Links ── */}
@@ -67,8 +65,8 @@ export default function Navbar() {
                 href={link.href}
                 className={`text-sm transition-all duration-200 pb-1 ${
                   activeSection === link.href.slice(1)
-                    ? "text-[#22c55e] font-semibold border-b-2 border-[#22c55e]"
-                    : "text-gray-900 font-normal hover:text-[#22c55e] border-b-2 border-transparent"
+                    ? "text-[#07FF5A] font-semibold border-b-2 border-[#07FF5A]"
+                    : "text-[#05822F] font-normal hover:text-[#05822F] border-b-2 border-transparent"
                 }`}
               >
                 {link.label}
@@ -79,7 +77,7 @@ export default function Navbar() {
             <div className="relative">
               <button
                 onClick={() => setResourcesOpen(!resourcesOpen)}
-                className="flex items-center gap-1 text-gray-900 hover:text-[#22c55e] text-sm font-normal transition-colors duration-200"
+                className="flex items-center gap-1 text-[#05822F] hover:text-[#05822F] text-sm font-normal transition-colors duration-200"
               >
                 Resources
                 <svg
@@ -99,7 +97,7 @@ export default function Navbar() {
                     <Link
                       key={r.label}
                       href={r.href}
-                      className="block px-4 py-2.5 text-sm text-gray-900 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+                      className="block px-4 py-2.5 text-sm text-[#05822F] hover:text-[#05822F] hover:bg-gray-100 transition-colors"
                       onClick={() => setResourcesOpen(false)}
                     >
                       {r.label}
@@ -115,7 +113,7 @@ export default function Navbar() {
             {/* Register — outlined pill */}
             <Link
               href="/register"
-              className="text-sm text-gray-900 font-semibold px-4 py-2.5 rounded-full border border-[#22c55e] hover:bg-[rgba(34,197,94,0.1)] transition-colors duration-200"
+              className="text-sm text-[#05822F] font-semibold px-4 py-2.5 rounded-full border border-[#22c55e] hover:bg-[rgba(34,197,94,0.1)] transition-colors duration-200"
             >
               Register
             </Link>
@@ -124,7 +122,7 @@ export default function Navbar() {
             <div className="flex items-center gap-1 rounded-full border border-[#22c55e] px-1.5 py-1" style={{ boxShadow: "0 0 12px rgba(34,197,94,0.25)" }}>
               <Link
                 href="/login"
-                className="text-sm text-gray-900 font-medium px-3 py-0.5 hover:text-gray-900 transition-colors duration-200"
+                className="text-sm text-[#05822F] font-medium px-3 py-0.5 hover:text-[#05822F] transition-colors duration-200"
               >
                 Sign In
               </Link>
@@ -139,7 +137,7 @@ export default function Navbar() {
 
           {/* ── Mobile Hamburger ── */}
           <button
-            className="md:hidden text-gray-900 p-2"
+            className="md:hidden text-[#05822F] p-2"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
@@ -162,7 +160,7 @@ export default function Navbar() {
               key={link.label}
               href={link.href}
               className={`block text-sm py-1 ${
-                activeSection === link.href.slice(1) ? "text-[#22c55e] font-semibold" : "text-gray-900 hover:text-[#22c55e]"
+                activeSection === link.href.slice(1) ? "text-[#07FF5A] font-semibold" : "text-[#05822F] hover:text-[#05822F]"
               }`}
               onClick={() => setMobileOpen(false)}
             >
@@ -171,7 +169,7 @@ export default function Navbar() {
           ))}
           <Link
             href="#"
-            className="block text-sm text-gray-900 hover:text-[#22c55e] py-1"
+            className="block text-sm text-[#05822F] hover:text-[#05822F] py-1"
             onClick={() => setMobileOpen(false)}
           >
             Resources
@@ -180,14 +178,14 @@ export default function Navbar() {
           <div className="pt-3 border-t border-gray-200 flex flex-col gap-3">
             <Link
               href="/register"
-              className="text-sm text-gray-900 font-semibold px-4 py-2 rounded-full border border-[#22c55e] text-center hover:bg-[rgba(34,197,94,0.1)] transition-colors"
+              className="text-sm text-[#05822F] font-semibold px-4 py-2 rounded-full border border-[#22c55e] text-center hover:bg-[rgba(34,197,94,0.1)] transition-colors"
               onClick={() => setMobileOpen(false)}
             >
               Register
             </Link>
             <Link
               href="/login"
-              className="text-sm text-gray-900 text-center py-1 hover:text-[#22c55e] transition-colors"
+              className="text-sm text-[#05822F] text-center py-1 hover:text-[#05822F] transition-colors"
               onClick={() => setMobileOpen(false)}
             >
               Sign In

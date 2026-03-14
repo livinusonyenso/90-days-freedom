@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useUser } from "@/context/UserContext";
 import ComingSoonModal from "@/components/ui/ComingSoonModal";
 
@@ -43,13 +44,7 @@ export default function CoursesNavbar() {
 
             {/* ── Logo ── */}
             <Link href="/courses" className="flex items-center gap-2 flex-shrink-0">
-              <div
-                className="flex flex-col items-center justify-center"
-                style={{ width: "38px", height: "38px", borderRadius: "50%", background: "linear-gradient(135deg, #14532d, #166534)", flexShrink: 0 }}
-              >
-                <span style={{ color: "white", fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: "0.65rem", lineHeight: 1 }}>90</span>
-                <span style={{ color: "white", fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.45rem", lineHeight: 1, marginTop: "1px" }}>Days</span>
-              </div>
+              <Image src="/images/logo.png" alt="90 Days Freedom System" width={38} height={38} className="rounded-full" />
               <span style={{ color: "#166534", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "1rem" }}>
                 Courses
               </span>

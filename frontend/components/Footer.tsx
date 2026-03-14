@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -133,40 +134,7 @@ export default function Footer() {
 
             {/* Logo */}
             <Link href="/" className="flex items-center flex-shrink-0">
-              <div
-                className="flex flex-col items-center justify-center"
-                style={{
-                  width: "46px",
-                  height: "46px",
-                  borderRadius: "50%",
-                  background: "linear-gradient(135deg, #00c853, #00e676)",
-                  flexShrink: 0,
-                }}
-              >
-                <span
-                  style={{
-                    color: "#071a09",
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 800,
-                    fontSize: "0.85rem",
-                    lineHeight: 1.1,
-                  }}
-                >
-                  90
-                </span>
-                <span
-                  style={{
-                    color: "#071a09",
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 700,
-                    fontSize: "0.55rem",
-                    lineHeight: 1,
-                    letterSpacing: "0.03em",
-                  }}
-                >
-                  Days
-                </span>
-              </div>
+              <Image src="/images/logo.png" alt="90 Days Freedom System" width={46} height={46} className="rounded-full" />
             </Link>
 
             {/* Copyright */}

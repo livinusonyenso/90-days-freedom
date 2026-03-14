@@ -26,9 +26,7 @@ async function sendAcknowledgment({ firstName, email, subject }) {
         <!-- Header -->
         <div style="background:linear-gradient(135deg,#063114,#0d4a1e);padding:32px 40px;border-radius:12px 12px 0 0;">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#14532d,#22c55e);display:flex;align-items:center;justify-content:center;text-align:center;line-height:1;">
-              <span style="color:white;font-weight:800;font-size:11px;display:block;">90<br/><span style="font-size:8px;font-weight:600;">Days</span></span>
-            </div>
+            <img src="${process.env.CLIENT_ORIGIN || "http://localhost:4000"}/images/logo.png" alt="90 Days Freedom System" width="40" height="40" style="border-radius:50%;display:block;" />
             <span style="color:white;font-weight:700;font-size:16px;">90-Days Freedom System</span>
           </div>
           <h1 style="color:white;font-size:22px;font-weight:800;margin:0;line-height:1.3;">
@@ -134,10 +132,7 @@ async function sendWelcomeEmail({ name, email }) {
         <div style="background:linear-gradient(135deg,#063114 0%,#0d4a1e 60%,#14532d 100%);padding:40px 40px 32px;">
           <!-- Logo -->
           <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;">
-            <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;flex-direction:column;align-items:center;justify-content:center;">
-              <span style="color:white;font-weight:800;font-size:12px;line-height:1;display:block;text-align:center;">90</span>
-              <span style="color:white;font-weight:600;font-size:8px;line-height:1;display:block;text-align:center;">Days</span>
-            </div>
+            <img src="${appUrl}/images/logo.png" alt="90 Days Freedom System" width="42" height="42" style="border-radius:50%;display:block;" />
             <span style="color:white;font-weight:700;font-size:16px;letter-spacing:0.01em;">90-Days Freedom System</span>
           </div>
 
@@ -212,9 +207,7 @@ async function sendJobApplicationConfirmation({ name, email, jobTitle }) {
         <!-- Header -->
         <div style="background:linear-gradient(135deg,#063114,#0d4a1e);padding:32px 40px;border-radius:12px 12px 0 0;">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
-            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#14532d,#22c55e);display:flex;align-items:center;justify-content:center;text-align:center;">
-              <span style="color:white;font-weight:800;font-size:11px;display:block;line-height:1.2;">90<br/><span style="font-size:8px;font-weight:600;">Days</span></span>
-            </div>
+            <img src="${appUrl}/images/logo.png" alt="90 Days Freedom System" width="40" height="40" style="border-radius:50%;display:block;" />
             <span style="color:white;font-weight:700;font-size:16px;">90-Days Freedom System</span>
           </div>
           <h1 style="color:white;font-size:22px;font-weight:800;margin:0;line-height:1.3;">
