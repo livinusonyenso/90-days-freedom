@@ -31,19 +31,13 @@ export default function FAQ() {
 
   return (
     <section
-      className="relative py-16 sm:py-24 overflow-hidden"
-      style={{
-        backgroundImage: "url('/images/faq-background.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="relative py-16 sm:py-24 overflow-hidden bg-white"
     >
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <Reveal direction="up">
-          <h2 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-white uppercase tracking-wider text-center mb-12">
+          <h2 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-black uppercase tracking-wider text-center mb-12">
             FIND ANSWERS TO COMMON QUESTIONS
           </h2>
         </Reveal>
