@@ -47,6 +47,7 @@ export interface Course {
   rating: number;
   image: string;
   slug: string;
+  isLocked?: boolean;
   detail: CourseDetail;
 }
 
@@ -132,6 +133,8 @@ export const courses: Course[] = [
     rating: 5,
     image: "/images/courses1.png",
     slug: "complete-uiux-design-mastery",
+        isLocked: true,
+
     detail: {
       instructor: {
         name: "CODE WALKER",
@@ -162,6 +165,8 @@ export const courses: Course[] = [
     rating: 4,
     image: "/images/courses2.png",
     slug: "unity-game-development-bootcamp",
+        isLocked: true,
+
     detail: {
       instructor: {
         name: "ALEX REED",
@@ -213,6 +218,7 @@ export const courses: Course[] = [
     rating: 5,
     image: "/images/courses3.png",
     slug: "building-profitable-business-model",
+    isLocked: true,
     detail: {
       instructor: {
         name: "SARAH MILES",
@@ -243,6 +249,7 @@ export const courses: Course[] = [
     rating: 4,
     image: "/images/courses4.png",
     slug: "advanced-facebook-advertising",
+    isLocked: true,
     detail: {
       instructor: {
         name: "MIKE TORRES",
@@ -273,6 +280,7 @@ export const courses: Course[] = [
     rating: 5,
     image: "/images/courses5.png",
     slug: "sales-funnel-mastery",
+    isLocked: true,
     detail: {
       instructor: {
         name: "JAMES COLE",
@@ -303,6 +311,7 @@ export const courses: Course[] = [
     rating: 4,
     image: "/images/courses6.png",
     slug: "brand-identity-content-strategy",
+    isLocked: true,
     detail: {
       instructor: {
         name: "NINA BLAKE",
@@ -333,6 +342,7 @@ export const courses: Course[] = [
     rating: 5,
     image: "/images/courses1.png",
     slug: "sales-funnel-mastery-2",
+    isLocked: true,
     detail: {
       instructor: {
         name: "JAMES COLE",
@@ -363,6 +373,7 @@ export const courses: Course[] = [
     rating: 4,
     image: "/images/courses1.png",
     slug: "brand-identity-content-strategy-2",
+    isLocked: true,
     detail: {
       instructor: {
         name: "NINA BLAKE",

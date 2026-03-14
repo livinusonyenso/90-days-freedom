@@ -50,21 +50,21 @@ export default function FAQ() {
               <RevealItem key={faq.question} direction="up">
                 <div
                   className="rounded-xl overflow-hidden"
-                  style={{ background: "rgba(240,248,240,0.95)" }}
+                  style={{ background: "#025818" }}
                 >
                   <button
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                     className="w-full flex items-center justify-between px-6 py-4 text-left"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-body font-medium text-sm sm:text-base pr-4" style={{ color: "#074E1F" }}>
+                    <span className="font-body font-medium text-sm sm:text-base pr-4" style={{ color: "#ffffff" }}>
                       {faq.question}
                     </span>
                     <svg
                       className={`flex-shrink-0 w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke="#074E1F"
+                      stroke="#ffffff"
                       strokeWidth={2.5}
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m-8-8h16" />
@@ -76,7 +76,7 @@ export default function FAQ() {
                     className="accordion-content"
                     style={{ maxHeight: isOpen ? "300px" : "0" }}
                   >
-                    <p className="px-6 pb-5 text-gray-700 text-sm leading-relaxed">
+                    <p className="px-6 pb-5 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
                       {faq.answer}
                     </p>
                   </div>

@@ -15,7 +15,8 @@ export default function AboutSection() {
           <RevealItem direction="up" className="mb-10">
             <Link
               href="#about"
-              className="inline-flex items-center justify-center bg-brand-green text-white font-heading font-bold text-sm sm:text-base tracking-widest px-10 py-4 rounded-lg hover:opacity-90 transition-all duration-300"
+              className="inline-flex items-center justify-center text-white font-heading font-bold text-sm sm:text-base tracking-widest px-10 py-4 rounded-lg hover:opacity-90 transition-all duration-300"
+              style={{ background: "#025818" }}
             >
               HOW THE SYSTEM WORKS
             </Link>
