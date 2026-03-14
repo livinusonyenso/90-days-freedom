@@ -45,7 +45,7 @@ function BulletList({ items }: { items: string[] }) {
 
 export default function SystemsSection() {
   return (
-    <section className="py-16 sm:py-24 border-t border-gray-200 bg-white">
+    <section className="py-16 sm:py-24  border-gray-200 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 sm:space-y-28">
 
         {/* Section Header */}

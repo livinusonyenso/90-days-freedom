@@ -10,7 +10,7 @@ const expectItems = [
 
 export default function WhatToExpect() {
   return (
-    <section className="py-16 sm:py-24 border-t border-gray-200 bg-white">
+    <section className="py-16 sm:py-24  border-gray-200 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal direction="up">
           <h2 className="font-heading font-bold text-3xl sm:text-4xl text-black text-center uppercase tracking-wider mb-12">
