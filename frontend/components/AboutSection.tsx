@@ -6,8 +6,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="py-10 sm:py-20 text-center"
-      style={{ backgroundColor: "#063114" }}
+      className="py-10 sm:py-20 text-center bg-white"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -24,7 +23,7 @@ export default function AboutSection() {
 
           {/* Main Title */}
           <RevealItem direction="up">
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-white uppercase tracking-wide mb-8">
+            <h2 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-black uppercase tracking-wide mb-8">
               THE 90-DAY FREEDOM SYSTEM
             </h2>
           </RevealItem>
@@ -32,11 +31,11 @@ export default function AboutSection() {
           {/* Description */}
           <RevealItem direction="up" className="w-full">
             <div className="space-y-6 max-w-3xl mx-auto mb-16">
-              <p className="text-brand-text-muted text-base sm:text-lg leading-relaxed">
+              <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
                 Most people are not stuck because they lack effort or intelligence.
                 They are stuck because their business depends on them for everything.
               </p>
-              <p className="text-brand-text-muted text-base sm:text-lg leading-relaxed">
+              <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
                 The 90 Day Freedom System™ is built to fix that. This is a structured,
                 hands-on systemization program designed to help you turn chaotic
                 operations into self-running execution in 90 days, using practical

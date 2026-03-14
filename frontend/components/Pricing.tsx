@@ -42,49 +42,18 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="relative py-16 sm:py-24 overflow-hidden"
-      style={{
-        backgroundImage: "url('/images/freedom-system-membership-plans2.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="relative py-16 sm:py-24 overflow-hidden bg-white"
     >
-      {/* Dark overlay for readability */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "rgba(3, 12, 3, 0.55)" }}
-      />
-
-      {/* Subtle particle dots */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(22)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: "2px",
-              height: "2px",
-              top: `${(i * 37 + 13) % 100}%`,
-              left: `${(i * 53 + 7) % 100}%`,
-              background: "#00e676",
-              opacity: 0.35,
-              boxShadow: "0 0 5px 2px rgba(0,230,118,0.4)",
-            }}
-          />
-        ))}
-      </div>
-
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section title */}
         <Reveal direction="up" className="text-center mb-12">
           <h2
-            className="font-bold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight"
+            className="font-bold text-3xl sm:text-4xl lg:text-5xl text-black leading-tight"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
             90-Days Freedom System
             <br />
-            <span style={{ color: "#ffffff", fontWeight: 500 }}>
+            <span style={{ color: "#111827", fontWeight: 500 }}>
               Membership options
             </span>
           </h2>
